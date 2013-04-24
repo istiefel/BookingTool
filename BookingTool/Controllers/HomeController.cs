@@ -30,12 +30,5 @@ namespace BookingTool.Controllers
 
             return View();
         }
-
-        //
-        // GET: /
-        public ActionResult CurrentAccount()
-        {
-            return View();
-        }
     }
 }

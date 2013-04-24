@@ -7,23 +7,34 @@ using BookingTool.Models;
 
 namespace BookingTool.Controllers
 {
-    private BookingEntities bookingDb = new BookingEntities();
-
     public class BookingController : Controller
     {
+        BookingEntities bookingDb = new BookingEntities();
+
         //
         // GET: /Booking/Create
         public ActionResult Create()
         {
-            return View();
+            return View(new PartialBooking());
         }
 
+       
         //
-        // POST: /Booking/Create
+        // POST: /StoreManager/Create
+
         [HttpPost]
-        public ActionResult Create(Booking booking)
+        public ActionResult Create(PartialBooking partialBooking)
         {
-            return View(booking);
+            if (ModelState.IsValid)
+            {
+                bookingDb.PartialBookings.Add(partialBooking);
+                bookingDb.SaveChanges();
+                return RedirectToAction("Index");
+            }
+    
+            ViewBag.BookingId = new SelectList(bookingDb.PartialBookings, "BookingId", "Name");
+            return View(partialBooking);
         }
+    
     }
 }

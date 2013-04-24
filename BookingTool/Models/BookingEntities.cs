@@ -9,6 +9,16 @@ namespace BookingTool.Models
     public class BookingEntities : DbContext
     {
         public DbSet<Booking> Bookings { get; set; }
-        public DbSet<PartialBooking> PartialBookings { get; set; } 
+        public DbSet<PartialBooking> PartialBookings { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            
+            base.OnModelCreating(modelBuilder);
+        }
+
+
     }
 }
