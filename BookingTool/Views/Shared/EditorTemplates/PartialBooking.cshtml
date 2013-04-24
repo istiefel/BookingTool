@@ -1,0 +1,24 @@
+﻿@model BookingTool.Models.PartialBooking
+    
+<tr>
+    <td>
+        @Html.EditorFor(model => model.Sender)
+        @Html.ValidationMessageFor(model => model.Sender)
+    </td>
+    
+    <td>
+        @Html.EditorFor(model => model.Recipient)
+        @Html.ValidationMessageFor(model => model.Recipient)
+    </td>
+    
+    <td>
+        @Html.EditorFor(model => model.Amount)
+        @Html.ValidationMessageFor(model => model.Amount)
+    </td>
+    
+    <td>
+        @Html.EditorFor(model => model.Share)
+        @Html.ValidationMessageFor(model => model.Share)
+    </td>
+
+</tr>

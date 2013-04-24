@@ -12,7 +12,6 @@ namespace BookingTool.Models
     public class PartialBooking
     {
         public int Id { get; set; }
-
         public int BookingId { get; set; }
         public string Sender { get; set; }
         public string Recipient { get; set; }

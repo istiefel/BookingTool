@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -20,10 +21,12 @@ namespace BookingTool.Models
 
         [NotMapped]
         public decimal TotalAmount {
-            get { return PartialBookings.Sum(p => p.Amount); }
+            get {
+                return (PartialBookings == null) ? 0 : PartialBookings.Sum(p => p.Amount);
+            }
         }   
   
-        public ICollection<PartialBooking> PartialBookings { get; set; } 
+        public virtual IList<PartialBooking> PartialBookings { get; set; } 
 
     }
 }

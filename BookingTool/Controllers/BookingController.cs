@@ -12,29 +12,35 @@ namespace BookingTool.Controllers
         BookingEntities bookingDb = new BookingEntities();
 
         //
+        // GET: /Booking/
+        public ActionResult Index()
+        {
+            var model = bookingDb.Bookings;
+            return View(model);
+        }
+
+        //
         // GET: /Booking/Create
         public ActionResult Create()
         {
-            return View(new PartialBooking());
+            var booking = new Booking();
+            booking.DateBooked = DateTime.Now;
+            booking.DateCreated = DateTime.Now;
+            return View(booking);
         }
 
-       
         //
-        // POST: /StoreManager/Create
-
+        // POST: /Booking/Create
         [HttpPost]
-        public ActionResult Create(PartialBooking partialBooking)
+        public ActionResult Create(Booking booking)
         {
             if (ModelState.IsValid)
             {
-                bookingDb.PartialBookings.Add(partialBooking);
+                bookingDb.Bookings.Add(booking);
                 bookingDb.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");                
             }
-    
-            ViewBag.BookingId = new SelectList(bookingDb.PartialBookings, "BookingId", "Name");
-            return View(partialBooking);
+            return View(booking);
         }
-    
     }
 }
