@@ -22,7 +22,16 @@ namespace BookingTool.Models
         [NotMapped]
         public decimal TotalAmount {
             get {
-                return (PartialBookings == null) ? 0 : PartialBookings.Sum(p => p.Amount);
+                if (PartialBookings == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return PartialBookings.Sum(p => p.Amount);
+                    
+                }
+                //return (PartialBookings == null) ? 0 : PartialBookings.Sum(p => p.Amount);
             }
         }   
   

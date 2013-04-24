@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Wieviele Teilnehmer?</h2>
+
+
+@using(Html.BeginForm("Create", "Booking", FormMethod.Get))
+{
+    <input type="text" name="participantsCount" value="1"/>
+    
+    <input type="submit" value="Weiter"/>
+}

@@ -169,6 +169,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AccountOverview.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingEntities.cs" />
     <Compile Include="Models\PartialBooking.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Booking\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PartialBooking.cshtml" />
+    <Content Include="Views\Booking\EnterParticipantsCount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

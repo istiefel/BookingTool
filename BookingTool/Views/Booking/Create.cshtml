@@ -10,7 +10,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Booking</legend>
+        <legend>Booking</legend>        
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -53,7 +53,7 @@
                     <th>Share</th>
                 </tr>
                 
-                @for(var i = 0; i < 10; i++)
+                @for(var i = 0; i < ViewBag.ParticipantsCount; i++)
                 {
                     @Html.EditorFor(model => model.PartialBookings[i])
                 }

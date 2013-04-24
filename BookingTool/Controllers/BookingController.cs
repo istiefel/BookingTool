@@ -21,8 +21,14 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/Create
-        public ActionResult Create()
+        public ActionResult Create(int? participantsCount)
         {
+            if (participantsCount == null)
+                return View("EnterParticipantsCount");
+
+
+            ViewBag.ParticipantsCount = participantsCount;
+
             var booking = new Booking();
             booking.DateBooked = DateTime.Now;
             booking.DateCreated = DateTime.Now;
