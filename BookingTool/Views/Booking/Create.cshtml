@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Buchung erstellen</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -39,8 +39,8 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.DateCreated)
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.DateCreated)
+        <div class="form-field">
+            @Html.DisplayFor(model => model.DateCreated)
             @Html.ValidationMessageFor(model => model.DateCreated)
         </div>
         

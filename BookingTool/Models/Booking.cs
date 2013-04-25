@@ -6,19 +6,39 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace BookingTool.Models
 {
-    public class Booking
+    public class Booking : IValidatableObject
     {
         
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime DateBooked { get; set; }
-        public System.DateTime DateCreated { get; set; }
 
+        [Required]
+        [MaxLength(250)]
+        public string Description { get; set; }
+
+        public DateTime DateBooked { get; set; }
+
+        //[HiddenInput] 
+        public DateTime DateCreated { get; set; }
+
+        public IEnumerable<ValidationResult>Validate(ValidationContext validationContext)
+        {
+            if (DateBooked > DateTime.Now)
+            {
+                yield return new ValidationResult("DateBooked kann nicht in der Zukunft liegen.");
+            }
+            if (DateBooked < DateTime.Now.AddYears(-1))
+            {
+                yield return new ValidationResult("DateBooked kann nicht so weit in der Vergangenheit liegen.");
+            }
+        }
+    
         [NotMapped]
         public decimal TotalAmount {
             get {

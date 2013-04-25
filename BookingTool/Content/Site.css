@@ -105,14 +105,11 @@ h5, h6 {
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
         padding-left: 10px;
-        padding-top: 30px;
+        padding-top: 20px;
     }
 
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
-    }
+
 
 header .content-wrapper {
     padding-top: 20px; 
@@ -133,9 +130,9 @@ footer {
     font-family: Rockwell, Consolas, "Courier New", Courier, monospace;
     font-size: 2.3em;
     margin: 0;
-    background: url(/content/Img/crossvertise_breit_v1.0.png) no-repeat;
+    background: url("../Images/crossvertise_breit_v1.0_klein.png") no-repeat;
     display: block;
-    height: 40px;
+    height: 42px;
     width: 250px
 }
 
@@ -217,7 +214,7 @@ ul#menu {
 
     .featured .content-wrapper {
         background-color: rgb(151, 191, 13);
-       
+               
         color: #3e5667;
         padding: 20px 40px 30px 40px;
     }
@@ -424,6 +421,16 @@ label.checkbox {
 }
 
 input, textarea {
+    border: 1px solid #e2e2e2;
+    background: #fff;
+    color: #333;
+    font-size: 1.2em;
+    margin: 5px 0 6px 0;
+    padding: 5px;
+    width: 300px;
+}
+
+.form-field {
     border: 1px solid #e2e2e2;
     background: #fff;
     color: #333;
