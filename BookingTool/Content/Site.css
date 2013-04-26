@@ -442,7 +442,7 @@ input, textarea {
 
 textarea {
     font-family: inherit;
-    width: 500px;
+    width: 300px;
 }
 
     input:focus, textarea:focus {

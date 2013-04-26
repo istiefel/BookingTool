@@ -16,7 +16,9 @@ namespace BookingTool.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string Sender { get; set; }
+        public string Sender { 
+            get {return ich;}
+        }
 
         [Required]
         [DataType(DataType.EmailAddress)]

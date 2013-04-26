@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace BookingTool.Models
 {
+    [Bind(Exclude = "DateCreated")]
     public class Booking : IValidatableObject
     {
         
@@ -20,22 +21,27 @@ namespace BookingTool.Models
 
         [Required]
         [MaxLength(250)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
+        [DisplayName("Date Booked")]
         public DateTime DateBooked { get; set; }
 
-        //[HiddenInput] 
+        //[HiddenInput] nur lesen
+        [DisplayName("Date Created")]
         public DateTime DateCreated { get; set; }
 
         public IEnumerable<ValidationResult>Validate(ValidationContext validationContext)
         {
+            var field = new[] {"DateBooked"};
+
             if (DateBooked > DateTime.Now)
             {
-                yield return new ValidationResult("DateBooked kann nicht in der Zukunft liegen.");
+                yield return new ValidationResult("DateBooked kann nicht in der Zukunft liegen.", field);
             }
             if (DateBooked < DateTime.Now.AddYears(-1))
             {
-                yield return new ValidationResult("DateBooked kann nicht so weit in der Vergangenheit liegen.");
+                yield return new ValidationResult("DateBooked kann nicht so weit in der Vergangenheit liegen.", field);
             }
         }
     

@@ -19,6 +19,19 @@ namespace BookingTool.Controllers
             return View(model);
         }
 
+        public ActionResult MyAccount()
+        {
+            var accountOverview = new AccountOverview();
+            accountOverview.User = "i.stiefel@crossvertise.com";
+
+            accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
+                                              where p.Sender == accountOverview.User || p.Recipient == accountOverview.User
+                                              select p).ToList();
+
+
+            return View(accountOverview);
+        }
+
         //
         // GET: /Booking/Create
         public ActionResult Create(int? participantsCount)
@@ -31,7 +44,6 @@ namespace BookingTool.Controllers
 
             var booking = new Booking();
             booking.DateBooked = DateTime.Now;
-            booking.DateCreated = DateTime.Now;
             return View(booking);
         }
 
@@ -40,6 +52,7 @@ namespace BookingTool.Controllers
         [HttpPost]
         public ActionResult Create(Booking booking)
         {
+            booking.DateCreated = DateTime.Now;
             if (ModelState.IsValid)
             {
                 bookingDb.Bookings.Add(booking);
