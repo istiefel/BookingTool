@@ -35,6 +35,7 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/Create
+        [Authorize]
         public ActionResult Create(int? participantsCount)
         {
             if (participantsCount == null)
@@ -42,7 +43,11 @@ namespace BookingTool.Controllers
 
             ViewBag.ParticipantsCount = participantsCount;
 
-            var userNames = new UsersContext().UserProfiles.Select(u => u.UserName).ToList();
+            //var userNames = from u in new UsersContext().UserProfiles
+            //                where u.UserName != User.Identity.Name
+            //                select u;
+
+            var userNames = new UsersContext().UserProfiles.Where(u => u.UserName != User.Identity.Name).Select(u => u.UserName).ToList();
             ViewBag.UserNames = userNames;
 
             var booking = new Booking();
@@ -60,6 +65,7 @@ namespace BookingTool.Controllers
         //
         // POST: /Booking/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Booking booking)
         {
             booking.DateCreated = DateTime.Now;
@@ -68,7 +74,7 @@ namespace BookingTool.Controllers
             {
                 bookingDb.Bookings.Add(booking);
                 bookingDb.SaveChanges();
-                return RedirectToAction("Index");                
+                return RedirectToAction("MyAccount");                
             }
             return View(booking);
         }
