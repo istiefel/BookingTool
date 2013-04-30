@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookingTool.Models.AccountOverview>
+﻿@model BookingTool.Models.AccountOverview
 
 @{
     ViewBag.Title = "MyAccount";
@@ -6,29 +6,22 @@
 
 <h2>MyAccount</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalAmount)
-        </th>
-        <th></th>
-    </tr>
+<fieldset>
+    <legend>AccountOverview</legend>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalAmount)
-        </td>
-    </tr>
-}
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.User)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.User)
+    </div>
 
-</table>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TotalAmount)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalAmount)
+    </div>
+    
+    @Html.Partial("PartialBookings", Model.PartialBookings)
+</fieldset>

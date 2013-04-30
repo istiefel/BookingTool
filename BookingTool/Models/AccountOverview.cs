@@ -8,7 +8,7 @@ namespace BookingTool.Models
 {
     public class AccountOverview
     {
-        public string User { get; set; }
+        public string UserName { get; set; }
         public virtual IList<PartialBooking> PartialBookings { get; set; }
         public decimal TotalAmount
         {

@@ -297,6 +297,7 @@
     <Content Include="Views\Shared\EditorTemplates\PartialBooking.cshtml" />
     <Content Include="Views\Booking\EnterParticipantsCount.cshtml" />
     <Content Include="Views\Booking\MyAccount.cshtml" />
+    <Content Include="Views\Booking\PartialBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,7 +44,7 @@
                     <th>Amount</th>
                     <th>Share</th>
                 </tr>
-                
+
                 @for(var i = 0; i < ViewBag.ParticipantsCount; i++)
                 {
                     @Html.EditorFor(model => model.PartialBookings[i])

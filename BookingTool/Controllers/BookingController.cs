@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using BookingTool.Models;
+using WebMatrix.WebData;
 
 namespace BookingTool.Controllers
 {
@@ -22,12 +24,11 @@ namespace BookingTool.Controllers
         public ActionResult MyAccount()
         {
             var accountOverview = new AccountOverview();
-            accountOverview.User = "i.stiefel@crossvertise.com";
+            accountOverview.UserName = User.Identity.Name;
 
             accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
-                                              where p.Sender == accountOverview.User || p.Recipient == accountOverview.User
+                                              where p.Sender == accountOverview.UserName || p.Recipient == accountOverview.UserName
                                               select p).ToList();
-
 
             return View(accountOverview);
         }
@@ -39,11 +40,20 @@ namespace BookingTool.Controllers
             if (participantsCount == null)
                 return View("EnterParticipantsCount");
 
-
             ViewBag.ParticipantsCount = participantsCount;
+
+            var userNames = new UsersContext().UserProfiles.Select(u => u.UserName).ToList();
+            ViewBag.UserNames = userNames;
 
             var booking = new Booking();
             booking.DateBooked = DateTime.Now;
+            booking.PartialBookings = new List<PartialBooking>();
+
+            for (var i = 0; i < participantsCount; i++)
+            { 
+                booking.PartialBookings.Add(new PartialBooking{ Sender = User.Identity.Name });
+            }
+
             return View(booking);
         }
 
@@ -53,6 +63,7 @@ namespace BookingTool.Controllers
         public ActionResult Create(Booking booking)
         {
             booking.DateCreated = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 bookingDb.Bookings.Add(booking);

@@ -31,6 +31,8 @@ namespace BookingTool.Models
         [DisplayName("Date Created")]
         public DateTime DateCreated { get; set; }
 
+        public virtual IList<PartialBooking> PartialBookings { get; set; } 
+
         public IEnumerable<ValidationResult>Validate(ValidationContext validationContext)
         {
             var field = new[] {"DateBooked"};
@@ -60,8 +62,5 @@ namespace BookingTool.Models
                 //return (PartialBookings == null) ? 0 : PartialBookings.Sum(p => p.Amount);
             }
         }   
-  
-        public virtual IList<PartialBooking> PartialBookings { get; set; } 
-
     }
 }

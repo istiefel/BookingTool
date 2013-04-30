@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using WebMatrix.WebData;
 
 namespace BookingTool.Models
 {
@@ -16,9 +18,8 @@ namespace BookingTool.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
-        public string Sender { 
-            get {return ich;}
-        }
+        [HiddenInput(DisplayValue = true)]
+        public string Sender { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
