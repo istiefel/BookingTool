@@ -35,5 +35,17 @@ namespace BookingTool.Models
         public double Share { get; set; }
 
         public virtual Booking Booking { get; set; }
+
+        public decimal GetComputedAmount(string userName)
+        {
+            if (userName == Recipient)
+            {
+                return -Amount;
+            }
+            else
+            {
+                return Amount;
+            }
+        }
     }
 }

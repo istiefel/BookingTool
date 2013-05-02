@@ -9,19 +9,38 @@
 <fieldset>
     <legend>AccountOverview</legend>
     <div class="clear-fix">
-        <div class="overview">
+        <div>
             <h3>@Html.DisplayNameFor(model => model.UserName)</h3>
             @Html.DisplayFor(model => model.UserName)
-        </div>
-        <div class="overview">
-            <h3>@Html.DisplayNameFor(model => model.TotalAmount)</h3>
-            @Html.DisplayFor(model => model.TotalAmount)
-        </div>  
+        </div> 
     </div>
 
     <div>
         @Html.Partial("PartialBookings", Model.PartialBookings)
     </div>
     
-    
+    <div class="overview">
+        <table class="partial-bookings">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Credit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Debit)
+                </th>
+                <th>@Html.DisplayNameFor(model => model.TotalAmount)</th>
+            </tr>
+            <tr>
+                <td class="credit">
+                    @Html.DisplayFor(model => model.Credit)
+                </td>
+                <td class="debit">
+                    @Html.DisplayFor(model => model.Debit)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.TotalAmount)
+                </td>
+            </tr>
+        </table>
+    </div>
 </fieldset>

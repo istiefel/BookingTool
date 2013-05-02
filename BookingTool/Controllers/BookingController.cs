@@ -32,6 +32,7 @@ namespace BookingTool.Controllers
             accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
                                               where p.Sender == accountOverview.UserName || p.Recipient == accountOverview.UserName
                                               select p).ToList();
+
             return View(accountOverview);
         }
 
