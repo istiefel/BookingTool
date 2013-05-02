@@ -759,4 +759,15 @@ tr.pager td {
         footer p {
             margin: 0;
         }
+
+}
+
+
+/* custom styles*/
+
+.overview {
+    float: left;
+    display: block;
+    margin-right: 10px;
+    width: 470px;
 }

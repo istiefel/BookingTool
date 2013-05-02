@@ -46,12 +46,17 @@ namespace BookingTool.Controllers
 
             ViewBag.ParticipantsCount = participantsCount;
 
-            //var userNames = from u in new UsersContext().UserProfiles
-            //                where u.UserName != User.Identity.Name
-            //                select u;
+            var userContext = new UsersContext();
+            var userNames = from u in userContext.UserProfiles
+                            where u.UserName != User.Identity.Name
+                            select u.UserName;
+            ViewBag.UserNames = userNames.ToList();
 
-            var userNames = new UsersContext().UserProfiles.Where(u => u.UserName != User.Identity.Name).Select(u => u.UserName).ToList();
-            ViewBag.UserNames = userNames;
+            //var userNames = new UsersContext().UserProfiles
+            //    .Where(u => u.UserName != User.Identity.Name)
+            //    .Select(u => u.UserName )
+            //    .ToList();
+            //ViewBag.UserNames = userNames.ToList();
 
             var booking = new Booking();
             booking.DateBooked = DateTime.Now;
