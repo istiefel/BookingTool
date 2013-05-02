@@ -21,6 +21,9 @@ namespace BookingTool.Controllers
             return View(model);
         }
 
+
+        //
+        // GET: /Booking/
         public ActionResult MyAccount()
         {
             var accountOverview = new AccountOverview();
@@ -29,9 +32,9 @@ namespace BookingTool.Controllers
             accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
                                               where p.Sender == accountOverview.UserName || p.Recipient == accountOverview.UserName
                                               select p).ToList();
-
             return View(accountOverview);
         }
+
 
         //
         // GET: /Booking/Create
@@ -61,6 +64,7 @@ namespace BookingTool.Controllers
 
             return View(booking);
         }
+
 
         //
         // POST: /Booking/Create

@@ -4,24 +4,30 @@
     ViewBag.Title = "MyAccount";
 }
 
-<h2>MyAccount</h2>
+<h2>My Account</h2>
 
 <fieldset>
     <legend>AccountOverview</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.TotalAmount)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.TotalAmount)
-    </div>
     
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TotalAmount)
+            </td>
+        </tr>
+    </table>
+
     @Html.Partial("PartialBookings", Model.PartialBookings)
+    
 </fieldset>

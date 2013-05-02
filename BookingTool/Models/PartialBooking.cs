@@ -14,6 +14,8 @@ namespace BookingTool.Models
     public class PartialBooking
     {
         public int Id { get; set; }
+
+        [DisplayName("Booking ID")]
         public int BookingId { get; set; }
 
         [Required]

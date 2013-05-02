@@ -170,6 +170,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HandelErrorAttribute.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountOverview.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -298,10 +299,10 @@
     <Content Include="Views\Booking\EnterParticipantsCount.cshtml" />
     <Content Include="Views\Booking\MyAccount.cshtml" />
     <Content Include="Views\Booking\PartialBookings.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

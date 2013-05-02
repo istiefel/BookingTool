@@ -22,13 +22,16 @@ namespace BookingTool.Models
         [Required]
         [MaxLength(250)]
         [DataType(DataType.MultilineText)]
+
         public string Description { get; set; }
 
-        [DisplayName("Date Booked")]
+        [DisplayName("Date")]
+        //[UIHint("GermanDate")]
         public DateTime DateBooked { get; set; }
 
         //[HiddenInput] nur lesen
         [DisplayName("Date Created")]
+        //[UIHint("GermanDate")]
         public DateTime DateCreated { get; set; }
 
         public virtual IList<PartialBooking> PartialBookings { get; set; } 
