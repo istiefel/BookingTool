@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.Booking.DateBooked)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Recipient)
+            Person Opposite
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Amount)
@@ -36,7 +36,7 @@
                 @*                @item.Booking.DateBooked.ToString("dd.MM.yyyy")*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Recipient)
+                @item.PersonOpposite(User.Identity.Name)
             </td>
             <td>
                 @item.GetComputedAmount(User.Identity.Name)

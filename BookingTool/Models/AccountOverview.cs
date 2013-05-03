@@ -26,6 +26,7 @@ namespace BookingTool.Models
                 return Debit + Credit;
             } 
         }
+
         public decimal Debit
         {
             get

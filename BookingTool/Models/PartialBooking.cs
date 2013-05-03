@@ -47,5 +47,17 @@ namespace BookingTool.Models
                 return Amount;
             }
         }
+
+        public string PersonOpposite(string userName)
+        {
+            if (userName == Recipient)
+            {
+                return Sender;
+            }
+            else
+            {
+                return Recipient;
+            }
+        }
     }
 }
