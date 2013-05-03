@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace BookingTool.Models
 {
-    [Bind(Exclude = "DateCreated")]
+    [Bind(Exclude = "DateCreatedUtc, DateBookedUtc")]
     public class Booking : IValidatableObject
     {
         
@@ -25,14 +25,27 @@ namespace BookingTool.Models
 
         public string Description { get; set; }
 
-        [DisplayName("Date")]
+        
         //[UIHint("GermanDate")]
-        public DateTime DateBooked { get; set; }
+        public DateTime DateBookedUtc { get; set; }
 
-        //[HiddenInput] nur lesen
+        [NotMapped]
+        [DisplayName("Date Booked")]
+        public DateTime DateBooked
+        {
+            get { return TimeZoneInfo.ConvertTimeFromUtc(DateBookedUtc, MvcApplication.ApplicationTimeZoneInfo); } 
+            set
+            {
+                if (value.Kind == DateTimeKind.Utc)
+                    DateBookedUtc = value;
+                else 
+                    DateBookedUtc = TimeZoneInfo.ConvertTimeToUtc(value, MvcApplication.ApplicationTimeZoneInfo);
+            }
+        }
+
         [DisplayName("Date Created")]
         //[UIHint("GermanDate")]
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreatedUtc { get; set; }
 
         public virtual IList<PartialBooking> PartialBookings { get; set; } 
 
@@ -40,11 +53,11 @@ namespace BookingTool.Models
         {
             var field = new[] {"DateBooked"};
 
-            if (DateBooked > DateTime.Now)
+            if (DateBooked > TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, MvcApplication.ApplicationTimeZoneInfo))
             {
                 yield return new ValidationResult("DateBooked kann nicht in der Zukunft liegen.", field);
             }
-            if (DateBooked < DateTime.Now.AddYears(-1))
+            if (DateBooked < DateTime.UtcNow.AddYears(-1))
             {
                 yield return new ValidationResult("DateBooked kann nicht so weit in der Vergangenheit liegen.", field);
             }

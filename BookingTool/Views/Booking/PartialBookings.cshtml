@@ -33,7 +33,7 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Booking.DateBooked)
-                @*                @item.Booking.DateBooked.ToString("dd.MM.yyyy")*@
+                @*                @item.Booking.DateBookedUtc.ToString("dd.MM.yyyy")*@
             </td>
             <td>
                 @item.PersonOpposite(User.Identity.Name)

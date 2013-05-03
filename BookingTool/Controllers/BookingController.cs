@@ -31,7 +31,7 @@ namespace BookingTool.Controllers
 
             accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
                                               where p.Sender == accountOverview.UserName || p.Recipient == accountOverview.UserName
-                                              orderby p.Booking.DateBooked
+                                              orderby p.Booking.DateBookedUtc
                                               select p).ToList();
 
             return View(accountOverview);
@@ -61,7 +61,7 @@ namespace BookingTool.Controllers
             //ViewBag.UserNames = userNames.ToList();
 
             var booking = new Booking();
-            booking.DateBooked = DateTime.Now;
+            booking.DateBookedUtc = DateTime.UtcNow;
             booking.PartialBookings = new List<PartialBooking>();
 
             for (var i = 0; i < participantsCount; i++)
@@ -79,7 +79,8 @@ namespace BookingTool.Controllers
         [Authorize]
         public ActionResult Create(Booking booking)
         {
-            booking.DateCreated = DateTime.Now;
+            booking.DateCreatedUtc = DateTime.UtcNow;
+            //booking.DateBookedUtc = TimeZoneInfo.ConvertTimeToUtc(booking.DateBooked, MvcApplication.ApplicationTimeZoneInfo);
 
             if (ModelState.IsValid)
             {

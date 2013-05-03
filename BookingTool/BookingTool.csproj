@@ -237,6 +237,8 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <None Include="Properties\PublishProfiles\xv-booking-tool - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\xv-booking-tool - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -299,10 +301,10 @@
     <Content Include="Views\Booking\EnterParticipantsCount.cshtml" />
     <Content Include="Views\Booking\MyAccount.cshtml" />
     <Content Include="Views\Booking\PartialBookings.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
