@@ -56,6 +56,5 @@ namespace BookingTool.Models
                 }
             }
         }
-
     }
 }

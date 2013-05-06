@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BookingTool.Models.PartialBooking>
+﻿@using BookingTool.Models
+@model IEnumerable<BookingTool.Models.PartialBooking>
 
 @{
     ViewBag.Title = "PartialBookings";
@@ -33,13 +34,17 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Booking.DateBooked)
-                @*                @item.Booking.DateBookedUtc.ToString("dd.MM.yyyy")*@
             </td>
             <td>
                 @item.PersonOpposite(User.Identity.Name)
             </td>
             <td>
                 @item.GetComputedAmount(User.Identity.Name)
+            </td>
+            <td>
+                @if (item.Sender == User.Identity.Name) {
+                     @Html.ActionLink("Bezahlt", "Delete", new { id=item.BookingId })
+                } 
             </td>
         </tr>
     }

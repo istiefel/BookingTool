@@ -9,6 +9,7 @@ using WebMatrix.WebData;
 
 namespace BookingTool.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
         BookingEntities bookingDb = new BookingEntities();
@@ -40,7 +41,6 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/Create
-        [Authorize]
         public ActionResult Create(int? participantsCount)
         {
             if (participantsCount == null)
@@ -76,7 +76,6 @@ namespace BookingTool.Controllers
         //
         // POST: /Booking/Create
         [HttpPost]
-        [Authorize]
         public ActionResult Create(Booking booking)
         {
             booking.DateCreatedUtc = DateTime.UtcNow;
@@ -89,6 +88,38 @@ namespace BookingTool.Controllers
                 return RedirectToAction("MyAccount");                
             }
             return View(booking);
+        }
+
+        public ActionResult Delete(int id = 0)
+        {
+            var booking = bookingDb.PartialBookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id = 0)
+        {
+            if (ModelState.IsValid)
+            {
+                var booking = bookingDb.PartialBookings.Find(id);
+                if (booking != null && booking.Sender == User.Identity.Name)
+                {
+                    bookingDb.PartialBookings.Remove(booking);
+                    bookingDb.SaveChanges();
+                    return RedirectToAction("MyAccount");
+                }
+            }
+            return new HttpUnauthorizedResult();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            bookingDb.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
