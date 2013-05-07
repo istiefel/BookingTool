@@ -1,20 +1,20 @@
 ﻿@using BookingTool.Models
-@model IEnumerable<BookingTool.Models.PartialBooking>
+@model IEnumerable<BookingTool.Models.SharePartialBooking>
 
 @{
-    ViewBag.Title = "PartialBookings";
+    ViewBag.Title = "SharePartialBookings";
 }
 
 <table class="partial-bookings">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.BookingId)
+            @Html.DisplayNameFor(model => model.ShareBookingId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Booking.Name)
+            @Html.DisplayNameFor(model => model.ShareBooking.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Booking.DateBooked)
+            @Html.DisplayNameFor(model => model.ShareBooking.DateBooked)
         </th>
         <th>
             Person Opposite
@@ -27,13 +27,13 @@
     @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.BookingId)
+                @Html.DisplayFor(modelItem => item.ShareBookingId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Booking.Name)
+                @Html.DisplayFor(modelItem => item.ShareBooking.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Booking.DateBooked)
+                @Html.DisplayFor(modelItem => item.ShareBooking.DateBooked)
             </td>
             <td>
                 @item.PersonOpposite(User.Identity.Name)
@@ -53,3 +53,4 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+

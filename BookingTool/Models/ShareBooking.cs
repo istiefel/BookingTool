@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,9 +10,8 @@ using System.Web.Mvc;
 namespace BookingTool.Models
 {
     [Bind(Exclude = "DateCreatedUtc, DateBookedUtc")]
-    public class Booking : IValidatableObject
+    public class ShareBooking : IValidatableObject
     {
-        
         public int Id { get; set; }
 
         [Required]
@@ -24,20 +22,21 @@ namespace BookingTool.Models
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        
-        //[UIHint("GermanDate")]
+        [NotMapped]
+        public decimal TotalAmount { get; set; }
+
         public DateTime DateBookedUtc { get; set; }
 
         [NotMapped]
         [DisplayName("Date Booked")]
         public DateTime DateBooked
         {
-            get { return TimeZoneInfo.ConvertTimeFromUtc(DateBookedUtc, MvcApplication.ApplicationTimeZoneInfo); } 
+            get { return TimeZoneInfo.ConvertTimeFromUtc(DateBookedUtc, MvcApplication.ApplicationTimeZoneInfo); }
             set
             {
                 if (value.Kind == DateTimeKind.Utc)
                     DateBookedUtc = value;
-                else 
+                else
                     DateBookedUtc = TimeZoneInfo.ConvertTimeToUtc(value, MvcApplication.ApplicationTimeZoneInfo);
             }
         }
@@ -46,11 +45,11 @@ namespace BookingTool.Models
         //[UIHint("GermanDate")]
         public DateTime DateCreatedUtc { get; set; }
 
-        public virtual IList<PartialBooking> PartialBookings { get; set; } 
+        public virtual IList<SharePartialBooking> SharePartialBookings { get; set; }
 
-        public IEnumerable<ValidationResult>Validate(ValidationContext validationContext)
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var field = new[] {"DateBooked"};
+            var field = new[] { "DateBooked" };
 
             if (DateBooked > TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, MvcApplication.ApplicationTimeZoneInfo))
             {
@@ -61,20 +60,26 @@ namespace BookingTool.Models
                 yield return new ValidationResult("DateBooked kann nicht so weit in der Vergangenheit liegen.", field);
             }
         }
-    
-        [NotMapped]
-        public decimal TotalAmount {
-            get {
-                if (PartialBookings == null)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return PartialBookings.Sum(p => p.Amount);
-                }
-                //return (PartialBookings == null) ? 0 : PartialBookings.Sum(p => p.Amount);
+
+        public Booking ConvertToBooking()
+        {
+            var partialBookings = new List<PartialBooking>();
+            foreach (var sharePartialBooking in SharePartialBookings)
+            {
+                sharePartialBooking.ShareBooking = this;
+                partialBookings.Add(sharePartialBooking.ConvertToPartialBooking());
             }
-        }   
+            return new Booking
+                       {
+                           DateBooked = DateBooked,
+                           DateBookedUtc = DateBookedUtc,
+                           DateCreatedUtc = DateCreatedUtc,
+                           Description = Description,
+                           Id = Id,
+                           Name = Name,
+                           PartialBookings = partialBookings
+                       };
+
+        }
     }
 }

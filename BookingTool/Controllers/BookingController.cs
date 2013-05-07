@@ -18,8 +18,7 @@ namespace BookingTool.Controllers
         // GET: /Booking/
         public ActionResult Index()
         {
-            var model = bookingDb.Bookings;
-            return View(model);
+            return RedirectToAction("MyAccount");
         }
 
 
@@ -34,18 +33,33 @@ namespace BookingTool.Controllers
                                               where p.Sender == accountOverview.UserName || p.Recipient == accountOverview.UserName
                                               orderby p.Booking.DateBookedUtc
                                               select p).ToList();
-
             return View(accountOverview);
         }
 
 
         //
         // GET: /Booking/Create
-        public ActionResult Create(int? participantsCount)
+        public ActionResult Create(int? participantsCount, string method)
         {
             if (participantsCount == null)
                 return View("EnterParticipantsCount");
 
+            if (method == "byAmount")
+            {
+                return RedirectToAction("CreateByAmount", new { participantsCount });
+            }
+            else if (method == "byShares")
+            {
+                return RedirectToAction("CreateByShares", new { participantsCount });
+            }
+            return new HttpStatusCodeResult(400);
+         }
+
+
+        //
+        // GET: /Booking/CreateByAmount
+        public ActionResult CreateByAmount(int participantsCount)
+        {
             ViewBag.ParticipantsCount = participantsCount;
 
             var userContext = new UsersContext();
@@ -65,18 +79,16 @@ namespace BookingTool.Controllers
             booking.PartialBookings = new List<PartialBooking>();
 
             for (var i = 0; i < participantsCount; i++)
-            { 
-                booking.PartialBookings.Add(new PartialBooking{ Sender = User.Identity.Name });
+            {
+                booking.PartialBookings.Add(new PartialBooking { Sender = User.Identity.Name });
             }
-
             return View(booking);
         }
 
-
         //
-        // POST: /Booking/Create
+        // POST: /Booking/CreateByAmount
         [HttpPost]
-        public ActionResult Create(Booking booking)
+        public ActionResult CreateByAmount(Booking booking)
         {
             booking.DateCreatedUtc = DateTime.UtcNow;
             //booking.DateBookedUtc = TimeZoneInfo.ConvertTimeToUtc(booking.DateBooked, MvcApplication.ApplicationTimeZoneInfo);
@@ -90,6 +102,49 @@ namespace BookingTool.Controllers
             return View(booking);
         }
 
+
+
+        // GET: /Booking/CreateByShares
+        public ActionResult CreateByShares(int participantsCount)
+        {
+            ViewBag.ParticipantsCount = participantsCount;
+
+            var userContext = new UsersContext();
+            var userName = from u in userContext.UserProfiles
+                           where u.UserName != User.Identity.Name
+                           select u.UserName;
+            ViewBag.UserNames = userName.ToList();
+
+            var shareBooking = new ShareBooking();
+            shareBooking.DateBookedUtc = DateTime.UtcNow;
+            shareBooking.SharePartialBookings = new List<SharePartialBooking>();
+
+            for (var i = 0; i < participantsCount; i++)
+            {
+                shareBooking.SharePartialBookings.Add(new SharePartialBooking { Sender = User.Identity.Name });
+            }
+            return View(shareBooking);
+        }
+
+        // 
+        // POST: /Booking/CreateByShares
+        [HttpPost]
+        public ActionResult CreateByShares(ShareBooking shareBooking)
+        {
+            shareBooking.DateCreatedUtc = DateTime.UtcNow;
+
+            if (ModelState.IsValid)
+            {
+                bookingDb.Bookings.Add(shareBooking.ConvertToBooking());
+                bookingDb.SaveChanges();
+                return RedirectToAction("MyAccount");
+            }
+            return View(shareBooking);
+        }
+
+
+        //
+        // GET: /Booking/Delete
         public ActionResult Delete(int id = 0)
         {
             var booking = bookingDb.PartialBookings.Find(id);
@@ -100,6 +155,8 @@ namespace BookingTool.Controllers
             return View(booking);
         }
 
+        //
+        // POST: /Booking/Delete
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id = 0)
         {

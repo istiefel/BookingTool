@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -6,17 +7,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebMatrix.WebData;
 
 namespace BookingTool.Models
 {
-    
-    public class PartialBooking
+    public class SharePartialBooking
     {
         public int Id { get; set; }
 
         [DisplayName("Booking ID")]
-        public int BookingId { get; set; }
+        public int ShareBookingId { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -28,10 +27,28 @@ namespace BookingTool.Models
         public string Recipient { get; set; }
 
         [Required]
-        [Range(0.01, 100.00)]
-        public decimal Amount { get; set; }
+        public decimal WeightFactor { get; set; }
 
-        public virtual Booking Booking { get; set; }
+        public virtual ShareBooking ShareBooking { get; set; }
+
+        public decimal Amount
+        {
+            get
+            {
+                if (ShareBooking == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    {
+                        var totalAmount = ShareBooking.TotalAmount;
+                        var sumWeightFactor = ShareBooking.SharePartialBookings.Sum(s => s.WeightFactor);
+                        return totalAmount/sumWeightFactor*WeightFactor;
+                    }
+                }
+            }
+        }
 
         public decimal GetComputedAmount(string userName)
         {
@@ -55,6 +72,11 @@ namespace BookingTool.Models
             {
                 return Recipient;
             }
+        }
+
+        public PartialBooking ConvertToPartialBooking()
+        {
+            return new PartialBooking {Amount = Amount, BookingId = ShareBookingId, Id = Id, Recipient = Recipient, Sender = Sender};
         }
     }
 }

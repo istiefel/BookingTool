@@ -1,0 +1,67 @@
+﻿@model BookingTool.Models.ShareBooking
+
+@{
+    ViewBag.Title = "CreateByShares";
+}
+
+<h2>CreateByShares</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ShareBooking</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Name)
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Description)
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.DateBooked)
+            @*            @Html.TextBox("DateBookedUtc", Model.DateBooked.ToString("dd.MM.yyyy"))*@
+            @Html.EditorFor(model => model.DateBooked)
+            @Html.ValidationMessageFor(model => model.DateBooked)
+        </div>
+        
+        <div>
+            @Html.LabelFor(model => model.TotalAmount)
+            @Html.EditorFor(model => model.TotalAmount)
+            @Html.ValidationMessageFor(model => model.TotalAmount)
+        </div>
+        
+        <div>
+            <table>
+                <tr>
+                    <th>Sender</th>
+                    <th>Recipient</th>
+                    <th>Weight</th>
+                </tr>
+
+                @for(var i = 0; i < ViewBag.ParticipantsCount; i++)
+                {
+                    @Html.EditorFor(model => model.SharePartialBookings[i])
+                }
+            </table>
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "MyAccount")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -10,37 +10,30 @@
 <fieldset>
     <legend>PartialBooking</legend>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.BookingId)
-    </div>
-    <div class="display-field">
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.BookingId)</h3>
         @Html.DisplayFor(model => model.BookingId)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Sender)
-    </div>
-    <div class="display-field">
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Sender)</h3>
         @Html.DisplayFor(model => model.Sender)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Recipient)
-    </div>
-    <div class="display-field">
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Recipient)</h3>
         @Html.DisplayFor(model => model.Recipient)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Amount)
-    </div>
-    <div class="display-field">
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Amount)</h3>
         @Html.DisplayFor(model => model.Amount)
+    </div>
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Share)</h3>
+        @Html.DisplayFor(model => model.Share)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
         <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "MyAccount")
+        @Html.ActionLink("Back to List", "Index")
     </p>
 }

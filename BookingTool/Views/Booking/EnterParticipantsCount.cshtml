@@ -1,13 +1,22 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Create";
 }
 
 <h2>Wieviele Teilnehmer?</h2>
 
-
 @using(Html.BeginForm("Create", "Booking", FormMethod.Get))
 {
-    <input type="text" name="participantsCount" value="1"/>
+    <div>
+        @Html.RadioButton("method", "byAmount", checked(true))Create by Amount<br/>
+        @Html.RadioButton("method", "byShares")Create by Shares
+    </div>
     
+    <input type="text" name="participantsCount" value="1"/>
+                                                                    
     <input type="submit" value="Weiter"/>
+
+
+
+
 }

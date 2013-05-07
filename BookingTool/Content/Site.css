@@ -456,6 +456,7 @@ textarea {
     }
 
     input[type="submit"],
+    input[type="radio"],
     input[type="button"],
     button {
         background-color: #d3dce0;

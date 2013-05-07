@@ -176,6 +176,8 @@
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingEntities.cs" />
     <Compile Include="Models\PartialBooking.cs" />
+    <Compile Include="Models\ShareBooking.cs" />
+    <Compile Include="Models\SharePartialBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -295,13 +297,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Booking\Index.cshtml" />
-    <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Booking\CreateByAmount.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\PartialBooking.cshtml" />
     <Content Include="Views\Booking\EnterParticipantsCount.cshtml" />
     <Content Include="Views\Booking\MyAccount.cshtml" />
     <Content Include="Views\Booking\PartialBookings.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
+    <Content Include="Views\Booking\CreateByShares.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SharePartialBooking.cshtml" />
+    <Content Include="Views\Booking\SharePartialBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

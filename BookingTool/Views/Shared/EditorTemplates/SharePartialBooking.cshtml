@@ -1,4 +1,4 @@
-﻿@model BookingTool.Models.PartialBooking
+﻿@model BookingTool.Models.SharePartialBooking
    
 @{
     var userNamesList = new SelectList(ViewBag.UserNames);
@@ -14,9 +14,9 @@
         @Html.DropDownList("Recipient", userNamesList)
         @Html.ValidationMessageFor(model => model.Recipient)
     </td>
-    
+        
     <td>
-        @Html.EditorFor(model => model.Amount)
-        @Html.ValidationMessageFor(model => model.Amount)
+        @Html.EditorFor(model => model.WeightFactor)
+        @Html.ValidationMessageFor(model => model.WeightFactor)
     </td>
 </tr>
