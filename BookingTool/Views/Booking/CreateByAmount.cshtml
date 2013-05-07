@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Buchung erstellen</h2>
+<h2>Buchung erstellen | Einzelbuchung</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -35,8 +35,8 @@
             <table>
                 <tr>
                     <th>Sender</th>
-                    <th>Recipient</th>
-                    <th>Amount</th>
+                    <th>Empfänger</th>
+                    <th>Betrag</th>
                 </tr>
 
                 @for(var i = 0; i < ViewBag.ParticipantsCount; i++)
@@ -47,13 +47,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Erstellen" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "MyAccount")
+    @Html.ActionLink("Zurück zum Kontostand", "MyAccount")
 </div>
 
 @section Scripts {

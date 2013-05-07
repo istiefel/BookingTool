@@ -4,9 +4,9 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2>L&ouml;schen</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Buchung wirklich l&ouml;schen?</h3>
 <fieldset>
     <legend>PartialBooking</legend>
 
@@ -26,14 +26,11 @@
         <h3>@Html.DisplayNameFor(model => model.Amount)</h3>
         @Html.DisplayFor(model => model.Amount)
     </div>
-    <div>
-        <h3>@Html.DisplayNameFor(model => model.Share)</h3>
-        @Html.DisplayFor(model => model.Share)
-    </div>
+
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Löschen" />
+        @Html.ActionLink("Zurück zum Kontostand", "MyAccount")
     </p>
 }

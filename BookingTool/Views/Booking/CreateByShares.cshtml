@@ -4,7 +4,7 @@
     ViewBag.Title = "CreateByShares";
 }
 
-<h2>CreateByShares</h2>
+<h2>Buchung erstellen | Buchungssumme / Anzahl</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -41,8 +41,8 @@
             <table>
                 <tr>
                     <th>Sender</th>
-                    <th>Recipient</th>
-                    <th>Weight</th>
+                    <th>Empfänger</th>
+                    <th>Gewichtung</th>
                 </tr>
 
                 @for(var i = 0; i < ViewBag.ParticipantsCount; i++)

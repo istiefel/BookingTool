@@ -15,7 +15,7 @@ namespace BookingTool.Models
     {
         public int Id { get; set; }
 
-        [DisplayName("Booking ID")]
+        [DisplayName("Nr.")]
         public int BookingId { get; set; }
 
         [Required]
@@ -29,6 +29,7 @@ namespace BookingTool.Models
 
         [Required]
         [Range(0.01, 100.00)]
+        [DisplayName("Betrag")]
         public decimal Amount { get; set; }
 
         public virtual Booking Booking { get; set; }

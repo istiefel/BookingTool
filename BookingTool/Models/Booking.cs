@@ -22,6 +22,7 @@ namespace BookingTool.Models
         [Required]
         [MaxLength(250)]
         [DataType(DataType.MultilineText)]
+        [DisplayName("Beschreibung")]
         public string Description { get; set; }
 
         
@@ -29,7 +30,7 @@ namespace BookingTool.Models
         public DateTime DateBookedUtc { get; set; }
 
         [NotMapped]
-        [DisplayName("Date Booked")]
+        [DisplayName("Buchungsdatum")]
         public DateTime DateBooked
         {
             get { return TimeZoneInfo.ConvertTimeFromUtc(DateBookedUtc, MvcApplication.ApplicationTimeZoneInfo); } 

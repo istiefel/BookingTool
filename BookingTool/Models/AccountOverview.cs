@@ -12,8 +12,10 @@ namespace BookingTool.Models
     {
         [DisplayName("User Name")]
         public string UserName { get; set; }
+
         public virtual List<PartialBooking> PartialBookings { get; set; }
-        [DisplayName("Total Amount")]
+
+        [DisplayName("Summe")]
         public decimal TotalAmount
         {
             get
