@@ -10,15 +10,15 @@ using System.Web.Mvc;
 namespace BookingTool.Models
 {
     [Bind(Exclude = "DateCreatedUtc, DateBookedUtc")]
-    public class UnitBooking
+    public class UnitBooking : IValidatableObject
     {
         public int Id { get; set; }
 
-        public virtual IList<UnitBookingDropdown> UnitBookingDropdowns { get; set; }
-
         public virtual IList<UnitPartialBooking> UnitPartialBookings { get; set; }
 
-        UnitBookingDropdown unitBookingDropdown = new UnitBookingDropdown();
+        public int ProductId { get; set; }
+
+        public virtual Product Product { get; set; }
 
         [NotMapped]
         [DisplayName("Summe")]
@@ -26,14 +26,14 @@ namespace BookingTool.Models
         {
             get
             {
-                 if (UnitPartialBookings == null)
+                 if (Product == null || UnitPartialBookings == null)
                 {
                     return 0;
                 }
                 else
                 {
                     {
-                        var price = unitBookingDropdown.Price;
+                        var price = Product.Price;
                         var sumUnit = UnitPartialBookings.Sum(s => s.Unit);
                         return sumUnit*price;
                     }
@@ -90,7 +90,8 @@ namespace BookingTool.Models
                 DateBookedUtc = DateBookedUtc,
                 DateCreatedUtc = DateCreatedUtc,
                 Id = Id,
-                Name = unitBookingDropdown.Name,
+                Name = Product.Name,
+                Description = Product.Name,
                 PartialBookings = partialBookings
             };
         }

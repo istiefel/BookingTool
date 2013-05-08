@@ -1,0 +1,56 @@
+﻿@model BookingTool.Models.UnitBooking
+
+@{
+    ViewBag.Title = "CreateByUnit";
+    var productList = new SelectList(ViewBag.ProductList, "Key", "Value");
+}
+
+<h2>Buchung erstellen | Buchungssumme / Anzahl</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ShareBooking</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Product)
+            @Html.DropDownList("ProductId", productList)
+            @Html.ValidationMessageFor(model => model.Product)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.DateBooked)
+            @*            @Html.TextBox("DateBookedUtc", Model.DateBooked.ToString("dd.MM.yyyy"))*@
+            @Html.EditorFor(model => model.DateBooked)
+            @Html.ValidationMessageFor(model => model.DateBooked)
+        </div>
+        
+        <div>
+            <table>
+                <tr>
+                    <th>Sender</th>
+                    <th>Empfänger</th>
+                    <th>Stück</th>
+                </tr>
+
+                @for(var i = 0; i < ViewBag.ParticipantsCount; i++)
+                {
+                    @Html.EditorFor(model => model.UnitPartialBookings[i])
+                }
+            </table>
+        </div>
+
+        <p>
+            <input type="submit" value="Erstellen" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Zurück zum Kontostandt", "MyAccount")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

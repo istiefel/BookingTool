@@ -179,7 +179,7 @@
     <Compile Include="Models\ShareBooking.cs" />
     <Compile Include="Models\SharePartialBooking.cs" />
     <Compile Include="Models\UnitBooking.cs" />
-    <Compile Include="Models\UnitBookingDropdown.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Models\UnitPartialBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -311,6 +311,8 @@
     <Content Include="Views\Shared\EditorTemplates\SharePartialBooking.cshtml" />
     <Content Include="Views\Booking\SharePartialBookings.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UnitPartialBooking.cshtml" />
+    <Content Include="Views\Booking\CreateByUnit.cshtml" />
+    <Content Include="Views\Booking\ProductCreate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

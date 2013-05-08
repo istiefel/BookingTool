@@ -14,7 +14,7 @@
         <header>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p class="site-title">@Html.ActionLink(" ", "Index", "Home", new {@class = "site-title"}) </p>
+                    <p class="site-title">@Html.ActionLink(" ", "Index", "Home", null, new {@class = "site-title"}) </p>
                 </div>
                 <div class="float-right">
                     <section id="login">
@@ -25,6 +25,7 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Kontostand", "MyAccount", "Booking")</li>
                             <li>@Html.ActionLink("Buchung", "Create", "Booking")</li>
+                            <li>@Html.ActionLink("Produkt erstellen", "ProductCreate", "Booking")</li>
                         </ul>
                     </nav>
                 </div>

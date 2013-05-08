@@ -30,7 +30,7 @@ namespace BookingTool.Models
         public string Recipient { get; set; }
 
         [Required]
-        public decimal Unit { get; set; }
+        public int Unit { get; set; }
 
         public virtual UnitBooking UnitBooking { get; set; }
 
@@ -60,7 +60,7 @@ namespace BookingTool.Models
 
         public PartialBooking ConvertToPartialBooking()
         {
-            return new PartialBooking {Amount = Amount, BookingId = UnitBookingId, Id = Id, Recipient = Recipient, Sender = Sender};
+            return new PartialBooking {BookingId = UnitBookingId, Amount = UnitBooking.TotalAmount, Id = Id, Recipient = Recipient, Sender = Sender};
         }
 
     }

@@ -10,7 +10,7 @@ namespace BookingTool.Models
     {
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<PartialBooking> PartialBookings { get; set; }
-
+        public DbSet<Product> Products { get; set; } 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

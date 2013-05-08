@@ -52,6 +52,10 @@ namespace BookingTool.Controllers
             {
                 return RedirectToAction("CreateByShares", new { participantsCount });
             }
+            else if (method == "byUnit")
+            {
+                return RedirectToAction("CreateByUnit", new {participantsCount});
+            }
             return new HttpStatusCodeResult(400);
          }
 
@@ -159,8 +163,10 @@ namespace BookingTool.Controllers
             unitBooking.DateBookedUtc = DateTime.UtcNow;
             unitBooking.UnitPartialBookings = new List<UnitPartialBooking>();
 
-            var unitBookingList = new List<UnitBookingDropdown>();
-            ViewBag.UnitBookingList = unitBookingList.ToList();
+            var bookingContext = new BookingEntities();
+            var productList = (from p in bookingContext.Products
+                               select p).ToDictionary(k => k.Id, v => v.Name + " (" + v.Price + ")");
+            ViewBag.ProductList = productList;
 
             for (var i = 0; i < participantsCount; i++)
             {
@@ -174,6 +180,19 @@ namespace BookingTool.Controllers
         [HttpPost]
         public ActionResult CreateByUnit(UnitBooking unitBooking)
         {
+            var bookingContext = new BookingEntities();
+        
+            unitBooking.Product = (from p in bookingContext.Products
+                                  where p.Id == unitBooking.ProductId
+                                  select p).SingleOrDefault();
+
+            //unitBooking.Product = bookingContext.Products.SingleOrDefault(p => p.Id == unitBooking.ProductId);
+            //unitBooking.Product = bookingContext.Products.Find(unitBooking.ProductId);
+            if (unitBooking.Product == null)
+            {
+                return HttpNotFound();
+            }
+
             unitBooking.DateCreatedUtc = DateTime.UtcNow;
 
             if (ModelState.IsValid)
@@ -220,6 +239,38 @@ namespace BookingTool.Controllers
         {
             bookingDb.Dispose();
             base.Dispose(disposing);
+        }
+
+        //
+        // GET: /Booking/ProductCreate
+        public ActionResult ProductCreate()
+        {
+            ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name");
+            return View();
+        } 
+
+        //
+        // POST: /Booking/ProductCreate
+        [HttpPost]
+        public ActionResult ProductCreate(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                bookingDb.Products.Add(product);
+                bookingDb.SaveChanges();
+                return RedirectToAction("Create");
+            }
+
+            ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
+            return View(product);
+        }
+
+        // GET: /Booking/ProductEdit
+        public ActionResult ProductEdit(int id)
+        {
+            Product product = bookingDb.Products.Find(id);
+            ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
+            return View(product);
         }
     }
 }

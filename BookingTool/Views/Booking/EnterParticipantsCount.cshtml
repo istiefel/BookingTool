@@ -9,7 +9,8 @@
 {
     <div>
         @Html.RadioButton("method", "byAmount", checked(true))Einzelbuchung<br/>
-        @Html.RadioButton("method", "byShares")Buchungssumme / Anzahl
+        @Html.RadioButton("method", "byShares")Buchungssumme / Anzahl <br/>
+        @Html.RadioButton("method", "byUnit")Stückzahl
     </div>
     
     <input type="text" name="participantsCount" value="1"/>

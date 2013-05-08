@@ -15,6 +15,8 @@ namespace BookingTool.Models
     {
         public int Id { get; set; }
 
+        public DateTime? DatePaidUtc { get; set; }
+
         [DisplayName("Nr.")]
         public int BookingId { get; set; }
 
