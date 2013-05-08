@@ -10,22 +10,36 @@ using System.Web.Mvc;
 namespace BookingTool.Models
 {
     [Bind(Exclude = "DateCreatedUtc, DateBookedUtc")]
-    public class ShareBooking : IValidatableObject
+    public class UnitBooking
     {
         public int Id { get; set; }
 
-        [Required]
-        public string Name { get; set; }
+        public virtual IList<UnitBookingDropdown> UnitBookingDropdowns { get; set; }
 
-        [Required]
-        [MaxLength(250)]
-        [DataType(DataType.MultilineText)]
-        [DisplayName("Beschreibung")]
-        public string Description { get; set; }
+        public virtual IList<UnitPartialBooking> UnitPartialBookings { get; set; }
+
+        UnitBookingDropdown unitBookingDropdown = new UnitBookingDropdown();
 
         [NotMapped]
         [DisplayName("Summe")]
-        public decimal TotalAmount { get; set; }
+        public decimal TotalAmount
+        {
+            get
+            {
+                 if (UnitPartialBookings == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    {
+                        var price = unitBookingDropdown.Price;
+                        var sumUnit = UnitPartialBookings.Sum(s => s.Unit);
+                        return sumUnit*price;
+                    }
+                }
+            }
+        }
 
         public DateTime DateBookedUtc { get; set; }
 
@@ -47,8 +61,6 @@ namespace BookingTool.Models
         //[UIHint("GermanDate")]
         public DateTime DateCreatedUtc { get; set; }
 
-        public virtual IList<SharePartialBooking> SharePartialBookings { get; set; }
-
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var field = new[] { "DateBooked" };
@@ -67,21 +79,21 @@ namespace BookingTool.Models
         {
             var partialBookings = new List<PartialBooking>();
 
-            foreach (var sharePartialBooking in SharePartialBookings)
+            foreach (var unitPartialBooking in UnitPartialBookings)
             {
-                sharePartialBooking.ShareBooking = this;
-                partialBookings.Add(sharePartialBooking.ConvertToPartialBooking());
+                unitPartialBooking.UnitBooking = this;
+                partialBookings.Add(unitPartialBooking.ConvertToPartialBooking());
             }
             return new Booking
-                       {
-                           DateBooked = DateBooked,
-                           DateBookedUtc = DateBookedUtc,
-                           DateCreatedUtc = DateCreatedUtc,
-                           Description = Description,
-                           Id = Id,
-                           Name = Name,
-                           PartialBookings = partialBookings
-                       };
+            {
+                DateBooked = DateBooked,
+                DateBookedUtc = DateBookedUtc,
+                DateCreatedUtc = DateCreatedUtc,
+                Id = Id,
+                Name = unitBookingDropdown.Name,
+                PartialBookings = partialBookings
+            };
         }
+
     }
 }

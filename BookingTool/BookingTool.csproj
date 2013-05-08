@@ -178,6 +178,9 @@
     <Compile Include="Models\PartialBooking.cs" />
     <Compile Include="Models\ShareBooking.cs" />
     <Compile Include="Models\SharePartialBooking.cs" />
+    <Compile Include="Models\UnitBooking.cs" />
+    <Compile Include="Models\UnitBookingDropdown.cs" />
+    <Compile Include="Models\UnitPartialBooking.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +258,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\methods_de.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -306,6 +310,7 @@
     <Content Include="Views\Booking\CreateByShares.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SharePartialBooking.cshtml" />
     <Content Include="Views\Booking\SharePartialBookings.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\UnitPartialBooking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

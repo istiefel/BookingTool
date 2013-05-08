@@ -1,26 +1,24 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace BookingTool.Models
 {
-    public class SharePartialBooking
+    public class UnitPartialBooking
     {
-        public SharePartialBooking()
+        public UnitPartialBooking()
         {
-            WeightFactor = 1;
+            Unit = 1;
         }
 
         public int Id { get; set; }
 
         [DisplayName("Booking ID")]
-        public int ShareBookingId { get; set; }
+        public int UnitBookingId { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -32,38 +30,19 @@ namespace BookingTool.Models
         public string Recipient { get; set; }
 
         [Required]
-        public decimal WeightFactor { get; set; }
+        public decimal Unit { get; set; }
 
-        public virtual ShareBooking ShareBooking { get; set; }
-
-        public decimal Amount
-        {
-            get
-            {
-                if (ShareBooking == null)
-                {
-                    return 0;
-                }
-                else
-                {
-                    {
-                        var totalAmount = ShareBooking.TotalAmount;
-                        var sumWeightFactor = ShareBooking.SharePartialBookings.Sum(s => s.WeightFactor);
-                        return totalAmount/sumWeightFactor*WeightFactor;
-                    }
-                }
-            }
-        }
+        public virtual UnitBooking UnitBooking { get; set; }
 
         public decimal GetComputedAmount(string userName)
         {
             if (userName == Recipient)
             {
-                return -Amount;
+                return -UnitBooking.TotalAmount;
             }
             else
             {
-                return Amount;
+                return UnitBooking.TotalAmount;
             }
         }
 
@@ -81,7 +60,8 @@ namespace BookingTool.Models
 
         public PartialBooking ConvertToPartialBooking()
         {
-            return new PartialBooking {Amount = Amount, BookingId = ShareBookingId, Id = Id, Recipient = Recipient, Sender = Sender};
+            return new PartialBooking {Amount = Amount, BookingId = UnitBookingId, Id = Id, Recipient = Recipient, Sender = Sender};
         }
+
     }
 }

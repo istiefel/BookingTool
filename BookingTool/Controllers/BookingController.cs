@@ -143,6 +143,49 @@ namespace BookingTool.Controllers
         }
 
 
+        // 
+        // GET: /Booking/CreateByUnit
+        public ActionResult CreateByUnit(int participantsCount)
+        {
+            ViewBag.ParticipantsCount = participantsCount;
+
+            var userContext = new UsersContext();
+            var userName = from u in userContext.UserProfiles
+                           where u.UserName != User.Identity.Name
+                           select u.UserName;
+            ViewBag.UserNames = userName.ToList();
+
+            var unitBooking = new UnitBooking();
+            unitBooking.DateBookedUtc = DateTime.UtcNow;
+            unitBooking.UnitPartialBookings = new List<UnitPartialBooking>();
+
+            var unitBookingList = new List<UnitBookingDropdown>();
+            ViewBag.UnitBookingList = unitBookingList.ToList();
+
+            for (var i = 0; i < participantsCount; i++)
+            {
+                unitBooking.UnitPartialBookings.Add(new UnitPartialBooking { Sender = User.Identity.Name });
+            }
+            return View(unitBooking);
+        }
+
+        //
+        // POST: /Booking/CreateByUnit
+        [HttpPost]
+        public ActionResult CreateByUnit(UnitBooking unitBooking)
+        {
+            unitBooking.DateCreatedUtc = DateTime.UtcNow;
+
+            if (ModelState.IsValid)
+            {
+                bookingDb.Bookings.Add(unitBooking.ConvertToBooking());
+                bookingDb.SaveChanges();
+                return RedirectToAction("MyAccount");
+            }
+            return View(unitBooking);
+        }
+
+
         //
         // GET: /Booking/Delete
         public ActionResult Delete(int id = 0)
