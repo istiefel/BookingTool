@@ -1,0 +1,36 @@
+﻿@model BookingTool.Models.PartialBooking
+
+@{
+    ViewBag.Title = "MarkAsPaid";
+}
+
+<h2>Bezahlt markieren</h2>
+
+<h3>Buchung wirklich bezahlt markieren?</h3>
+<fieldset>
+    <legend>PartialBooking</legend>
+
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.BookingId)</h3>
+        @Html.DisplayFor(model => model.BookingId)
+    </div>
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Sender)</h3>
+        @Html.DisplayFor(model => model.Sender)
+    </div>
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Recipient)</h3>
+        @Html.DisplayFor(model => model.Recipient)
+    </div>
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Amount)</h3>
+        @Html.DisplayFor(model => model.Amount)
+    </div>
+
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Bezahlt" />
+        @Html.ActionLink("Zurück zum Kontostand", "MyAccount")
+    </p>
+}

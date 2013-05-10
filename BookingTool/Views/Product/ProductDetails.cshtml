@@ -4,7 +4,7 @@
     ViewBag.Title = "ProductDetails";
 }
 
-<h2>ProductDetails</h2>
+<h2>Produkt-Details</h2>
 
 
 
@@ -29,7 +29,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "ProductEdit", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Delete", "ProductDelete", new { id=item.Id })
             </td>
         </tr>
     }

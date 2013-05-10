@@ -43,8 +43,13 @@
             </td>
             <td>
                 @if (item.Sender == User.Identity.Name) {
-                     @Html.ActionLink("Bezahlt", "Delete", new { id=item.Id })
+                    @Html.ActionLink("Bezahlt", "MarkAsPaid", new { id=item.Id }) 
+                    @Html.ActionLink("Löschen", "Delete", new { id=item.Id })
                 } 
+                @if(item.DatePaidUtc != null)
+                {
+                    <p>erledigt</p>
+                }
             </td>
         </tr>
     }

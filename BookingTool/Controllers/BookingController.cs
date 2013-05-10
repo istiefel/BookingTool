@@ -207,6 +207,40 @@ namespace BookingTool.Controllers
 
 
         //
+        // GET: /Booking/MarkAsPaid
+        public ActionResult MarkAsPaid(int id = 0)
+        {
+            var booking = bookingDb.PartialBookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        //
+        // POST: /Booking/MarkAsPaid
+        [HttpPost, ActionName("MarkAsPaid")]
+        public ActionResult MarkAsPaidConfirmed(int id = 0)
+        {
+            if (ModelState.IsValid)
+            {
+                var booking = bookingDb.PartialBookings.Find(id);
+
+                var partialBooking = new PartialBooking();
+
+                if (booking != null && booking.Sender == User.Identity.Name)
+                {
+                    partialBooking.DatePaidUtc = DateTime.UtcNow;
+                    ViewBag.UserNames = partialBooking.DatePaidUtc;
+                    bookingDb.SaveChanges();
+                    return RedirectToAction("MyAccount");
+                }
+            }
+            return new HttpUnauthorizedResult();
+        }
+
+        //
         // GET: /Booking/Delete
         public ActionResult Delete(int id = 0)
         {
@@ -240,70 +274,6 @@ namespace BookingTool.Controllers
         {
             bookingDb.Dispose();
             base.Dispose(disposing);
-        }
-
-
-
-        //
-        // GET: /Booking/ProductDetails
-        public ActionResult ProductDetails()
-        {
-            var bookingContext = new BookingEntities();
-            var productList = (from p in bookingContext.Products
-                               select p).ToList();
-            ViewBag.ProductList = productList;
-
-            return View(productList);
-        }
-
-
-        //
-        // GET: /Booking/ProductCreate
-        public ActionResult ProductCreate()
-        {
-            ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name");
-            return View();
-        } 
-
-        //
-        // POST: /Booking/ProductCreate
-        [HttpPost]
-        public ActionResult ProductCreate(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                bookingDb.Products.Add(product);
-                bookingDb.SaveChanges();
-                return RedirectToAction("Create");
-            }
-
-            ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
-            return RedirectToAction("ProductDetails");
-        }
-
-
-        //
-        // GET: /Booking/ProductEdit
-        public ActionResult ProductEdit(int id)
-        {
-            Product product = bookingDb.Products.Find(id);
-            ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
-            return View(product);
-        } 
-
-        //
-        // POST: /Booking/ProductEdit
-        [HttpPost]
-        public ActionResult ProductEdit(Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                bookingDb.Entry(product).State = EntityState.Modified;
-                bookingDb.SaveChanges();
-                return RedirectToAction("ProductDetails");
-            }
-            ViewBag.Id = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
-            return View(product);
         }
     }
 }

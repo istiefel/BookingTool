@@ -10,7 +10,7 @@ using WebMatrix.WebData;
 
 namespace BookingTool.Models
 {
-    
+
     public class PartialBooking
     {
         public int Id { get; set; }
