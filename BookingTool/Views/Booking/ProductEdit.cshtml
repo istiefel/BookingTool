@@ -1,10 +1,10 @@
 ﻿@model BookingTool.Models.Product
 
 @{
-    ViewBag.Title = "ProductCreate";
+    ViewBag.Title = "ProductEdit";
 }
 
-<h2>ProductCreate</h2>
+<h2>ProductEdit</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -12,24 +12,26 @@
     <fieldset>
         <legend>Product</legend>
 
-        <div>
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Name)
         </div>
-        <div>
+        <div class="editor-field">
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <div>
+        <div class="editor-label">
             @Html.LabelFor(model => model.Price)
         </div>
-        <div>
+        <div class="editor-field">
             @Html.EditorFor(model => model.Price)
             @Html.ValidationMessageFor(model => model.Price)
         </div>
 
         <p>
-            <input type="submit" value="Erstellen" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }

@@ -313,6 +313,8 @@
     <Content Include="Views\Shared\EditorTemplates\UnitPartialBooking.cshtml" />
     <Content Include="Views\Booking\CreateByUnit.cshtml" />
     <Content Include="Views\Booking\ProductCreate.cshtml" />
+    <Content Include="Views\Booking\ProductDetails.cshtml" />
+    <Content Include="Views\Booking\ProductEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

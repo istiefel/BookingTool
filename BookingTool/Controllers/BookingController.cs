@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -241,6 +242,21 @@ namespace BookingTool.Controllers
             base.Dispose(disposing);
         }
 
+
+
+        //
+        // GET: /Booking/ProductDetails
+        public ActionResult ProductDetails()
+        {
+            var bookingContext = new BookingEntities();
+            var productList = (from p in bookingContext.Products
+                               select p).ToList();
+            ViewBag.ProductList = productList;
+
+            return View(productList);
+        }
+
+
         //
         // GET: /Booking/ProductCreate
         public ActionResult ProductCreate()
@@ -262,14 +278,31 @@ namespace BookingTool.Controllers
             }
 
             ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
-            return View(product);
+            return RedirectToAction("ProductDetails");
         }
 
+
+        //
         // GET: /Booking/ProductEdit
         public ActionResult ProductEdit(int id)
         {
             Product product = bookingDb.Products.Find(id);
             ViewBag.ProductId = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
+            return View(product);
+        } 
+
+        //
+        // POST: /Booking/ProductEdit
+        [HttpPost]
+        public ActionResult ProductEdit(Product product)
+        {
+            if (ModelState.IsValid)
+            {
+                bookingDb.Entry(product).State = EntityState.Modified;
+                bookingDb.SaveChanges();
+                return RedirectToAction("ProductDetails");
+            }
+            ViewBag.Id = new SelectList(bookingDb.Products, "Id", "Name", product.Id);
             return View(product);
         }
     }
