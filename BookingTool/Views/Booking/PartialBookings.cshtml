@@ -42,14 +42,20 @@
                 @item.GetComputedAmount(User.Identity.Name)
             </td>
             <td>
-                @if (item.Sender == User.Identity.Name) {
-                    @Html.ActionLink("Bezahlt", "MarkAsPaid", new { id=item.Id }) 
+                @if (item.Sender == User.Identity.Name) { 
                     @Html.ActionLink("Löschen", "Delete", new { id=item.Id })
+
+                    if(item.DatePaidUtc != null)
+                    {
+                        <span class ="partial-booking-paid">Bezahlt</span>
+                        
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Bezahlt", "MarkAsPaid", new { id=item.Id })
+                    }
                 } 
-                @if(item.DatePaidUtc != null)
-                {
-                    <p>erledigt</p>
-                }
+
             </td>
         </tr>
     }

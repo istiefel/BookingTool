@@ -54,7 +54,7 @@ namespace BookingTool.Models
                 }
                 else
                 {
-                    return PartialBookings.Where(p => p.Sender == UserName).Sum(p => p.Amount);
+                    return PartialBookings.Where(p => p.Sender == UserName && p.DatePaidUtc == null).Sum(p => p.Amount);
                 }
             }
         }

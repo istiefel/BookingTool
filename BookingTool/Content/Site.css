@@ -787,3 +787,7 @@ tr.pager td {
 .debit {
     color: red;
 }
+
+.partial-booking-paid {
+    text-decoration: line-through;
+}

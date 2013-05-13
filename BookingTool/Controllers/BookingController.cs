@@ -225,14 +225,12 @@ namespace BookingTool.Controllers
         {
             if (ModelState.IsValid)
             {
-                var booking = bookingDb.PartialBookings.Find(id);
+                var partialBooking = bookingDb.PartialBookings.Find(id);
 
-                var partialBooking = new PartialBooking();
 
-                if (booking != null && booking.Sender == User.Identity.Name)
+                if (partialBooking != null && partialBooking.Sender == User.Identity.Name && partialBooking.DatePaidUtc == null)
                 {
                     partialBooking.DatePaidUtc = DateTime.UtcNow;
-                    ViewBag.UserNames = partialBooking.DatePaidUtc;
                     bookingDb.SaveChanges();
                     return RedirectToAction("MyAccount");
                 }
@@ -274,6 +272,20 @@ namespace BookingTool.Controllers
         {
             bookingDb.Dispose();
             base.Dispose(disposing);
+        }
+
+
+        //
+        // GET: /Booking/FilterPerson
+        public ActionResult FilterPerson(string recipient, string sender)
+        {
+            var accountOverview = new AccountOverview();
+            accountOverview.UserName = User.Identity.Name;
+
+            accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
+                                               where (p.Sender == recipient && p.Recipient == recipient) || (p.Sender == sender && p.Recipient == sender)
+                                               select p).ToList();
+            return RedirectToAction("MyAccount");
         }
     }
 }
