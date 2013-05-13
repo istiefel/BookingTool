@@ -1,13 +1,13 @@
 ﻿@model BookingTool.Models.AccountOverview
 
 @{
-    ViewBag.Title = "MyAccount";
+    ViewBag.Title = "FilterPerson";
 }
 
-<h2>Mein Kontostand</h2>
+<h2>FilterPerson</h2>
 
 <fieldset>
-    <legend>AccountOverview</legend>
+    <legend>FilterPerson</legend>
     <div class="clear-fix">
         <div>
             <h3>@Html.DisplayNameFor(model => model.UserName)</h3>
@@ -29,7 +29,7 @@
                     @Html.DisplayNameFor(model => model.Debit)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TotalAmount)
+                    @Html.DisplayNameFor(model => model.TotalAmount) 
                 </th>
             </tr>
             <tr>
@@ -47,5 +47,5 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Neue Buchung erstellen", "Create")
+    @Html.ActionLink("Zurück zum Kontostand", "MyAccount")
 </p>

@@ -45,6 +45,7 @@ namespace BookingTool.Models
 
         [NotMapped]
         [DisplayName("Buchungsdatum")]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime DateBooked
         {
             get { return TimeZoneInfo.ConvertTimeFromUtc(DateBookedUtc, MvcApplication.ApplicationTimeZoneInfo); }

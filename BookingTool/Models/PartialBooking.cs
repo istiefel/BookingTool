@@ -30,7 +30,7 @@ namespace BookingTool.Models
         public string Recipient { get; set; }
 
         [Required]
-        [Range(0.01, 100.00)]
+        //[Range(0.01, 100.00)]
         [DisplayName("Betrag")]
         public decimal Amount { get; set; }
 

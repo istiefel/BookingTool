@@ -246,6 +246,8 @@
     <None Include="Properties\PublishProfiles\xv-booking-tool - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\xv-booking-tool - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\Globalize\globalize.culture.de-DE.js" />
+    <Content Include="Scripts\Globalize\globalize.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -259,7 +261,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
-    <Content Include="Scripts\methods_de.js" />
+    <Content Include="Scripts\Globalize\jquery.validate.globalized.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -318,6 +320,7 @@
     <Content Include="Views\Product\ProductEdit.cshtml" />
     <Content Include="Views\Product\ProductDelete.cshtml" />
     <Content Include="Views\Booking\MarkAsPaid.cshtml" />
+    <Content Include="Views\Booking\FilterPerson.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

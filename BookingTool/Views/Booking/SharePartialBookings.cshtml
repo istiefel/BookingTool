@@ -39,7 +39,7 @@
                 @item.PersonOpposite(User.Identity.Name)
             </td>
             <td>
-                @item.GetComputedAmount(User.Identity.Name)
+                @item.GetComputedAmount(User.Identity.Name) <span>&euro;</span>
             </td>
             <td>
                 @if (item.Sender == User.Identity.Name) {

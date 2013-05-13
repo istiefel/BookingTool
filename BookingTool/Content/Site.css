@@ -790,4 +790,5 @@ tr.pager td {
 
 .partial-booking-paid {
     text-decoration: line-through;
+    color: green;
 }

@@ -16,7 +16,10 @@ namespace BookingTool
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate*",
+                        "~/Scripts/Globalize/globalize.js",
+                        "~/Scripts/Globalize/globalize.culture*",
+                        "~/Scripts/Globalize/jquery.validate.globalized.js"));
 
             // Verwenden Sie die Entwicklungsversion von Modernizr zum Entwickeln und Erweitern Ihrer Kenntnisse. Wenn Sie dann
             // für die Produktion bereit sind, verwenden Sie das Buildtool unter "http://modernizr.com", um nur die benötigten Tests auszuwählen.

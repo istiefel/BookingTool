@@ -33,7 +33,7 @@
         
         <div>
             @Html.LabelFor(model => model.TotalAmount)
-            @Html.EditorFor(model => model.TotalAmount)
+            @Html.EditorFor(model => model.TotalAmount) <span>&euro;</span>
             @Html.ValidationMessageFor(model => model.TotalAmount)
         </div>
         

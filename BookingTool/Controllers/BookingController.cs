@@ -277,15 +277,17 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/FilterPerson
-        public ActionResult FilterPerson(string recipient, string sender)
+        public ActionResult FilterPerson(string person)
         {
             var accountOverview = new AccountOverview();
             accountOverview.UserName = User.Identity.Name;
 
+            
+
             accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
-                                               where (p.Sender == recipient && p.Recipient == recipient) || (p.Sender == sender && p.Recipient == sender)
+                                               where p.Sender == person || p.Recipient == person
                                                select p).ToList();
-            return RedirectToAction("MyAccount");
+            return View(accountOverview);
         }
     }
 }
