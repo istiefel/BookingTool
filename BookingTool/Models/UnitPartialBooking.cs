@@ -29,38 +29,30 @@ namespace BookingTool.Models
         [DataType(DataType.EmailAddress)]
         public string Recipient { get; set; }
 
+        public decimal Amount
+        {
+            get
+            {
+                if (UnitBooking == null || UnitBooking.Product == null)
+                {
+                    return 0;
+                }
+                else
+                {
+                    var price = UnitBooking.Product.Price;
+                    return Unit * price;
+                }        
+            }
+        }
+
         [Required]
         public int Unit { get; set; }
 
         public virtual UnitBooking UnitBooking { get; set; }
 
-        public decimal GetComputedAmount(string userName)
-        {
-            if (userName == Recipient)
-            {
-                return -UnitBooking.TotalAmount;
-            }
-            else
-            {
-                return UnitBooking.TotalAmount;
-            }
-        }
-
-        public string PersonOpposite(string userName)
-        {
-            if (userName == Recipient)
-            {
-                return Sender;
-            }
-            else
-            {
-                return Recipient;
-            }
-        }
-
         public PartialBooking ConvertToPartialBooking()
         {
-            return new PartialBooking {BookingId = UnitBookingId, Amount = UnitBooking.TotalAmount, Id = Id, Recipient = Recipient, Sender = Sender};
+            return new PartialBooking {BookingId = UnitBookingId, Amount = Amount, Id = Id, Recipient = Recipient, Sender = Sender};
         }
 
     }

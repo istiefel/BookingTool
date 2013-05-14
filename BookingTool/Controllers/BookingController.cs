@@ -187,6 +187,11 @@ namespace BookingTool.Controllers
                                   where p.Id == unitBooking.ProductId
                                   select p).SingleOrDefault();
 
+            foreach (var unitPartialBooking in unitBooking.UnitPartialBookings)
+            {
+                unitPartialBooking.UnitBooking = unitBooking;
+            }
+
             //unitBooking.Product = bookingContext.Products.SingleOrDefault(p => p.Id == unitBooking.ProductId);
             //unitBooking.Product = bookingContext.Products.Find(unitBooking.ProductId);
             if (unitBooking.Product == null)

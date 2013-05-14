@@ -26,7 +26,7 @@
 
     @foreach (var item in Model) {
         <tr>
-            <td>
+            <td class="partial-booking-numbers">
                 @Html.DisplayFor(modelItem => item.BookingId)
             </td>
             <td>
@@ -38,7 +38,7 @@
             <td>
                 @Html.ActionLink(item.PersonOpposite(User.Identity.Name), "FilterPerson", new {person = item.PersonOpposite(User.Identity.Name)})
             </td>
-            <td>
+            <td class="partial-booking-numbers">
                 @item.GetComputedAmount(User.Identity.Name) <span>&euro;</span>
             </td>
             <td>

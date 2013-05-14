@@ -26,18 +26,13 @@ namespace BookingTool.Models
         {
             get
             {
-                 if (Product == null || UnitPartialBookings == null)
+                if (Product == null || UnitPartialBookings == null)
                 {
                     return 0;
                 }
-                else
-                {
-                    {
-                        var price = Product.Price;
-                        var sumUnit = UnitPartialBookings.Sum(s => s.Unit);
-                        return sumUnit*price;
-                    }
-                }
+                var price = Product.Price;
+                var sumUnit = UnitPartialBookings.Sum(s => s.Unit);
+                return sumUnit*price;
             }
         }
 

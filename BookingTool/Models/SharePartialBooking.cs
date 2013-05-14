@@ -55,30 +55,6 @@ namespace BookingTool.Models
             }
         }
 
-        public decimal GetComputedAmount(string userName)
-        {
-            if (userName == Recipient)
-            {
-                return -Amount;
-            }
-            else
-            {
-                return Amount;
-            }
-        }
-
-        public string PersonOpposite(string userName)
-        {
-            if (userName == Recipient)
-            {
-                return Sender;
-            }
-            else
-            {
-                return Recipient;
-            }
-        }
-
         public PartialBooking ConvertToPartialBooking()
         {
             return new PartialBooking {Amount = Amount, BookingId = ShareBookingId, Id = Id, Recipient = Recipient, Sender = Sender};

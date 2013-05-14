@@ -792,3 +792,7 @@ tr.pager td {
     text-decoration: line-through;
     color: green;
 }
+
+.partial-booking-numbers {
+    text-align: right;
+}

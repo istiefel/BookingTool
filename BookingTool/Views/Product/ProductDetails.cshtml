@@ -8,7 +8,7 @@
 
 
 
-<table>
+<table class="partial-bookings">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -24,18 +24,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
+            <td class="partial-booking-numbers">
+                @Html.DisplayFor(modelItem => item.Price) <span>&euro;</span>
             </td>
             <td>
-                @Html.ActionLink("Edit", "ProductEdit", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "ProductDelete", new { id=item.Id })
+                @Html.ActionLink("Bearbeiten", "ProductEdit", new { id=item.Id }) |
+                @Html.ActionLink("Löschen", "ProductDelete", new { id=item.Id })
             </td>
         </tr>
     }
 </table>
 
 <p>
-    @Html.ActionLink("Neues Produkt", "ProductCreate")
+    @Html.ActionLink("Neues Produkt erstellen", "ProductCreate")
 </p>
 

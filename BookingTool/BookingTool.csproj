@@ -312,7 +312,6 @@
     <Content Include="Views\Booking\Delete.cshtml" />
     <Content Include="Views\Booking\CreateByShares.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SharePartialBooking.cshtml" />
-    <Content Include="Views\Booking\SharePartialBookings.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\UnitPartialBooking.cshtml" />
     <Content Include="Views\Booking\CreateByUnit.cshtml" />
     <Content Include="Views\Product\ProductCreate.cshtml" />
