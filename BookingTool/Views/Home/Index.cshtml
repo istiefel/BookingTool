@@ -9,31 +9,48 @@
                 <h2>@ViewBag.Message</h2>
             </hgroup>
             <p>
-                Weitere Informationen zu ASP.NET MVC finden Sie unter
-                <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-                Die Seite enthält <mark>Videos, Lernprogramme und Beispiele,</mark> die Sie bei der optimalen Nutzung von ASP.NET MVC unterstützen.
-                Wenn Sie Fragen zu ASP.NET MVC haben, besuchen Sie
-                <a href="http://forums.asp.net/1146.aspx/1?MVC" title="ASP.NET MVC Forum">unsere Foren</a>.
+                Das Programm hilft bei der Berechnung und Darstellung firmeninterner Schulden und Rückzahlung. 
+                Jeder User besitzt ein Konto auf dem die besagten Posten vermerkt werden, somit kann nichts in Vergessenheit geraten .
             </p>
         </div>
     </section>
 }
+
 <h3>Funktionen:</h3>
 <ol class="round">
     <li class="one">
         <h5>Anmelden</h5>
-        Das BookingTool kann erst nach erfolgreicher Registrierung und Anmeldung verwendet werden. 
+        Das Programm kann erst nach erfolgreicher Registrierung und Anmeldung verwendet werden. 
         Nach der Anmeldung kann der persönliche Kontostand angeschaut werden und neue Buchungen erfolgen.
     </li>
 
     <li class="two">
-        <h5>Buchung</h5>
+        <h5>Buchungsvarianten</h5>
         Jede Buchung kann mehrere Beteiligte haben, die im Vorraus angegeben werden müssen.
-        Um die Buchung zu erstellen muss der Name, die Beschreibung, das Datum und die Beteiligten ausgewählt und eingetragen werden.
-    </li>
+        Es gibt drei Möglichkeiten eine Buchung zu tätigen:
+        
+        <div class="clear-fix">
+            <h5>1. Endbetr&auml;ge (freie Eingabe)</h5>
+            Name, Beschreibung, Buchungsdatum, beteiligte Personen und Betrag können frei eingegeben werden.
+        
+            <h5>2. gesamte Buchungssumme / Anzahl</h5>
+            Name, Beschreibung, Buchungsdatum, beteiligte Personen können frei eingegeben werden. <br/>
+            Die <span style="font-weight: bold">gesammte Buchungssumme</span> wird durch die <span style="font-weight: bold">Anteile</span> der beteiligten Personen geteilt.
 
-    <li class="three">
-        <h5>Kontostand</h5>
-        Der Kontostand zeigt die aktuellen Buchungen sowie die Beteiligeten an. Zusätzlich wird "Soll" und "Haben" angezeigt und ausgerechnet. 
+            <h5>3. Artikel-Buchung</h5>
+            <span style="font-weight: bold">Artikel</span> mit einem <span style="font-weight: bold">Preis</span> können aus der Dropdown-Liste ausgewählt werden, 
+            die Anzahl und das Datum der Buchung sind frei wählbar. <br/>
+            Nur autorisierter User kann die Artikelbuchung durchführen und neue Artikel anlegen.
+        </div>
+
     </li>
+    
+    <div>
+        <li class="three">
+            <h5>Kontostand</h5>
+            Der Kontostand zeigt die aktuellen Buchungen sowie die Beteiligeten an. Zusätzlich wird "Guthaben" und "Schulden" angezeigt und ausgerechnet. 
+            Durch klick auf die beteiligte Person werden alle Buchungen die im Zusammenhang stehen, angezeigt.
+        </li>
+    </div>
+
 </ol>

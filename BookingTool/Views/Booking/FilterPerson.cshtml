@@ -4,7 +4,7 @@
     ViewBag.Title = "FilterPerson";
 }
 
-<h2>FilterPerson</h2>
+<h2>Filter | Personenbezogen</h2>
 
 <fieldset>
     <legend>FilterPerson</legend>
@@ -34,13 +34,19 @@
             </tr>
             <tr>
                 <td class="credit">
-                    @Html.DisplayFor(model => model.Credit) <span>&euro;</span>
+                    @Html.DisplayFor(model => model.Credit) &euro;
                 </td>
                 <td class="debit">
-                    @Html.DisplayFor(model => model.Debit) <span>&euro;</span>
+                    @Html.DisplayFor(model => model.Debit) &euro;
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.TotalAmount) <span>&euro;</span>
+                    @Html.DisplayFor(model => model.TotalAmount) &euro;
+                </td>
+                <td>
+                    @if (Model.TotalAmount > 0)
+                    {                    
+                        @Html.ActionLink("Alles Bezahlt", "MultipleAsPaid", new { userName=Model.FilterPerson })
+                    }
                 </td>
             </tr>
         </table>

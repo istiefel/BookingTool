@@ -3,16 +3,17 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Wieviele Teilnehmer?</h2>
-
+<h2>Buchungsvarianten | beteiligte Personen</h2>
+<h3>Buchungsvariante?</h3>
 @using(Html.BeginForm("Create", "Booking", FormMethod.Get))
 {
     <div>
-        @Html.RadioButton("method", "byAmount", checked(true))Einzelbuchung<br/>
-        @Html.RadioButton("method", "byShares")Buchungssumme / Anzahl <br/>
-        @Html.RadioButton("method", "byUnit")Stückzahl
+        @Html.RadioButton("method", "byAmount", checked(true))Endbeträge (frei Eingabe)<br/>
+        @Html.RadioButton("method", "byShares")gesamte Buchungssumme / Anzahl <br/>
+        @Html.RadioButton("method", "byUnit")Artikel-Buchung (crossvertise)
     </div>
     
+    <h3>Wie viele beteiligte Personen?</h3>
     <input type="text" name="participantsCount" value="1"/>
                                                                     
     <input type="submit" value="Weiter"/>

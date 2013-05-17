@@ -5,13 +5,14 @@
     var productList = new SelectList(ViewBag.ProductList, "Key", "Value");
 }
 
-<h2>Buchung erstellen | Buchungssumme / Anzahl</h2>
+<h2>Buchung erstellen | Artikel-Buchung</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>ShareBooking</legend>
+        <br/>
 
         <div>
             @Html.LabelFor(model => model.Product)

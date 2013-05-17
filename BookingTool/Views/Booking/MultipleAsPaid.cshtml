@@ -1,0 +1,32 @@
+﻿@model BookingTool.Models.AccountOverview
+
+@{
+    ViewBag.Title = "MultipleAsPaid";
+}
+
+<h2>Alles Bezahlt?</h2>
+
+<fieldset>
+    <legend>AccountOverview</legend>
+
+    <div class="display-label">
+        <h3>@Html.DisplayNameFor(model => model.UserName)</h3>
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+        <h3>@Html.DisplayNameFor(model => model.FilterPerson)</h3>
+        @Html.DisplayFor(model => model.FilterPerson)
+    </div>
+
+    <div class="display-label">
+        <h3>@Html.DisplayNameFor(model => model.TotalAmount)</h3>
+        <p>Zu zahlender <span style="font-weight: bold"> Gesamtbetrag @Html.DisplayFor(model => model.TotalAmount)</span> = @Html.DisplayFor(model => model.Credit) @Html.DisplayFor(model => model.Debit)</p>
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Bezahlt" />
+        @Html.ActionLink("Zurück zum Kontostand", "MyAccount")
+    </p>
+}

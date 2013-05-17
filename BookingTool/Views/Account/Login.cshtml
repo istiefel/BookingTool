@@ -9,7 +9,6 @@
 </hgroup>
 
 <section id="loginForm">
-<h2>Lokales Konto für die Anmeldung verwenden.</h2>
 @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -35,15 +34,15 @@
         <input type="submit" value="Anmelden" />
     </fieldset>
     <p>
-        @Html.ActionLink("Register", "Register"), wenn Sie kein Konto besitzen.
+        @Html.ActionLink("Registrieren", "Register"), wenn Sie kein Konto besitzen.
     </p>
 }
 </section>
 
-<section class="social" id="socialLoginForm">
+@*<section class="social" id="socialLoginForm">
     <h2>Einen anderen Dienst zum Anmelden verwenden.</h2>
     @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
+</section>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -9,14 +9,13 @@
 <h3>Buchung wirklich l&ouml;schen?</h3>
 <fieldset>
     <legend>PartialBooking</legend>
-
-    <div>
-        <h3>@Html.DisplayNameFor(model => model.BookingId)</h3>
-        @Html.DisplayFor(model => model.BookingId)
-    </div>
     <div>
         <h3>@Html.DisplayNameFor(model => model.Booking.Name)</h3>
         @Html.DisplayFor(model => model.Booking.Name)
+    </div>
+    <div>
+        <h3>@Html.DisplayNameFor(model => model.Booking.DateBooked)</h3>
+        @Html.DisplayFor(model => model.Booking.DateBooked)
     </div>
     <div>
         <h3>@Html.DisplayNameFor(model => model.Sender)</h3>
@@ -30,7 +29,6 @@
         <h3>@Html.DisplayNameFor(model => model.Amount)</h3>
         @Html.DisplayFor(model => model.Amount) <span>&euro;</span>
     </div>
-
 </fieldset>
 @using (Html.BeginForm()) {
     <p>

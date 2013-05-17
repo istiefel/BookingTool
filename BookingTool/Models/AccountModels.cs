@@ -24,6 +24,8 @@ namespace BookingTool.Models
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+
+        [Display(Name = "Benutzername")]
         public string UserName { get; set; }
     }
 

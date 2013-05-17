@@ -8,9 +8,9 @@ using BookingTool.Models;
 
 namespace BookingTool.Controllers
 {
+    [Authorize (Users = "info@crossvertise.com")]
     public class ProductController : Controller
     {
-     
         BookingEntities bookingDb = new BookingEntities();
         
         //

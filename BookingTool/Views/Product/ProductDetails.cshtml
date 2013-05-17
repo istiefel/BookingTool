@@ -4,7 +4,7 @@
     ViewBag.Title = "ProductDetails";
 }
 
-<h2>Produkt-Details</h2>
+<h2>Produktliste</h2>
 
 
 
@@ -25,7 +25,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td class="partial-booking-numbers">
-                @Html.DisplayFor(modelItem => item.Price) <span>&euro;</span>
+                @Html.DisplayFor(modelItem => item.Price) &euro;
             </td>
             <td>
                 @Html.ActionLink("Bearbeiten", "ProductEdit", new { id=item.Id }) |

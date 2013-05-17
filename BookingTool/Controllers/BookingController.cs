@@ -17,14 +17,6 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/
-        public ActionResult Index()
-        {
-            return RedirectToAction("MyAccount");
-        }
-
-
-        //
-        // GET: /Booking/
         public ActionResult MyAccount()
         {
             var accountOverview = new AccountOverview();
@@ -150,6 +142,7 @@ namespace BookingTool.Controllers
 
         // 
         // GET: /Booking/CreateByUnit
+        [Authorize(Users = "info@crossvertise.com")]
         public ActionResult CreateByUnit(int participantsCount)
         {
             ViewBag.ParticipantsCount = participantsCount;
@@ -179,6 +172,7 @@ namespace BookingTool.Controllers
         //
         // POST: /Booking/CreateByUnit
         [HttpPost]
+        [Authorize(Users = "info@crossvertise.com")]
         public ActionResult CreateByUnit(UnitBooking unitBooking)
         {
             var bookingContext = new BookingEntities();
@@ -243,6 +237,7 @@ namespace BookingTool.Controllers
             return new HttpUnauthorizedResult();
         }
 
+
         //
         // GET: /Booking/Delete
         public ActionResult Delete(int id = 0)
@@ -286,13 +281,49 @@ namespace BookingTool.Controllers
         {
             var accountOverview = new AccountOverview();
             accountOverview.UserName = User.Identity.Name;
-
-            
+            accountOverview.FilterPerson = person;
 
             accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
-                                               where p.Sender == person || p.Recipient == person
+                                               where (p.Sender == person || p.Sender == accountOverview.UserName) && (p.Recipient == person || p.Recipient == accountOverview.UserName)
                                                select p).ToList();
             return View(accountOverview);
+        }
+
+
+        //
+        // GET: /Booking/MultipleAsPaid
+        public ActionResult MultipleAsPaid(string userName)
+        {
+            var accountOverview = new AccountOverview();
+            accountOverview.UserName = User.Identity.Name;
+            accountOverview.FilterPerson = userName;
+
+            accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
+                                               where (p.Sender == userName || p.Sender == accountOverview.UserName) && (p.Recipient == userName || p.Recipient == accountOverview.UserName) && p.DatePaidUtc == null
+                                               select p).ToList();
+            return View(accountOverview);
+        }
+
+        //
+        // POST: /Booking/MultipleAsPaid
+        [HttpPost, ActionName("MultipleAsPaid")]
+        public ActionResult MultipleAsPaidConfirmed(string userName)
+        {
+            if (ModelState.IsValid)
+            {
+                var partialBookings = (from p in bookingDb.PartialBookings
+                                       where (p.Sender == userName || p.Sender == User.Identity.Name) && (p.Recipient == userName || p.Recipient == User.Identity.Name) && p.DatePaidUtc == null
+                                       select p).ToList();
+
+                foreach (var booking in partialBookings)
+                {
+                    booking.DatePaidUtc = DateTime.UtcNow;
+                }
+                bookingDb.SaveChanges();
+                return RedirectToAction("FilterPerson", new {person = userName});
+
+            }
+            return new HttpUnauthorizedResult();
         }
     }
 }

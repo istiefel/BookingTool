@@ -12,21 +12,7 @@ namespace BookingTool.Controllers
         // GET: /
         public ActionResult Index()
         {
-            ViewBag.Message = "Ändern Sie diese Vorlage als Schnelleinstieg in Ihre ASP.NET MVC-Anwendung.";
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Ihre App-Beschreibungsseite.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Ihre Kontaktseite.";
+            ViewBag.Message = "Finanzen verwalten.";
 
             return View();
         }

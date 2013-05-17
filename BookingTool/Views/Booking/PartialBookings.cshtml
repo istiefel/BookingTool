@@ -39,7 +39,17 @@
                 @Html.ActionLink(item.PersonOpposite(User.Identity.Name), "FilterPerson", new {person = item.PersonOpposite(User.Identity.Name)})
             </td>
             <td class="partial-booking-numbers">
-                @item.GetComputedAmount(User.Identity.Name) <span>&euro;</span>
+                @{
+                    var amount = item.GetComputedAmount(User.Identity.Name);
+                }
+                @if (amount < 0)
+                {
+                    <span class="negative-amount">@amount &euro;</span>        
+                }
+                else
+                {
+                    <span class="positive-amount">@amount &euro;</span>
+                }
             </td>
             <td>
                 @if (item.Sender == User.Identity.Name) 
@@ -47,7 +57,6 @@
                     if(item.DatePaidUtc != null)
                     {
                         <span class ="partial-booking-paid">Bezahlt</span>
-                        
                     }
                     else
                     {

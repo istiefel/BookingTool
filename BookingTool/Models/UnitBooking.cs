@@ -18,6 +18,7 @@ namespace BookingTool.Models
 
         public int ProductId { get; set; }
 
+        [DisplayName("Produkt")]
         public virtual Product Product { get; set; }
 
         [NotMapped]

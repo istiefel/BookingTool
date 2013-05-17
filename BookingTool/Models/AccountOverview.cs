@@ -10,10 +10,12 @@ namespace BookingTool.Models
 {
     public class AccountOverview
     {
-        [DisplayName("User Name")]
+        [DisplayName("Benutzername")]
         public string UserName { get; set; }
 
         public virtual List<PartialBooking> PartialBookings { get; set; }
+
+        public string FilterPerson { get; set; }
 
         [DisplayName("Summe")]
         public decimal TotalAmount
@@ -29,6 +31,7 @@ namespace BookingTool.Models
             } 
         }
 
+        [DisplayName("Schulden")]
         public decimal Debit
         {
             get
@@ -44,6 +47,7 @@ namespace BookingTool.Models
             }
         }
 
+        [DisplayName("Guthaben")]
         public decimal Credit
         {
             get

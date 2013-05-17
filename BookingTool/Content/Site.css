@@ -50,6 +50,7 @@ mark {
     float: right;
 }
 
+
 .clear-fix:after {
     content: ".";
     clear: both;
@@ -326,7 +327,6 @@ aside {
 
 /* login page */
 #loginForm {
-    border-right: solid 2px #c8c8c8;
     float: left;
     width: 55%;
 }
@@ -780,11 +780,11 @@ tr.pager td {
     margin-right: 290px;
 }
 
-.credit {
-    color: green;
+.positive-amount {
+    color: black;
 }
 
-.debit {
+.negative-amount {
     color: red;
 }
 
@@ -795,4 +795,10 @@ tr.pager td {
 
 .partial-booking-numbers {
     text-align: right;
+}
+
+.box {
+    float: left;
+    width: 300px;
+    height: 200px;
 }
