@@ -206,39 +206,6 @@ namespace BookingTool.Controllers
 
 
         //
-        // GET: /Booking/MarkAsPaid
-        public ActionResult MarkAsPaid(int id = 0)
-        {
-            var booking = bookingDb.PartialBookings.Find(id);
-            if (booking == null)
-            {
-                return HttpNotFound();
-            }
-            return View(booking);
-        }
-
-        //
-        // POST: /Booking/MarkAsPaid
-        [HttpPost, ActionName("MarkAsPaid")]
-        public ActionResult MarkAsPaidConfirmed(int id = 0)
-        {
-            if (ModelState.IsValid)
-            {
-                var partialBooking = bookingDb.PartialBookings.Find(id);
-
-
-                if (partialBooking != null && partialBooking.Sender == User.Identity.Name && partialBooking.DatePaidUtc == null)
-                {
-                    partialBooking.DatePaidUtc = DateTime.UtcNow;
-                    bookingDb.SaveChanges();
-                    return RedirectToAction("MyAccount");
-                }
-            }
-            return new HttpUnauthorizedResult();
-        }
-
-
-        //
         // GET: /Booking/Delete
         public ActionResult Delete(int id = 0)
         {
@@ -291,6 +258,39 @@ namespace BookingTool.Controllers
 
 
         //
+        // GET: /Booking/MarkAsPaid
+        public ActionResult MarkAsPaid(int id = 0)
+        {
+            var booking = bookingDb.PartialBookings.Find(id);
+            if (booking == null)
+            {
+                return HttpNotFound();
+            }
+            return View(booking);
+        }
+
+        //
+        // POST: /Booking/MarkAsPaid
+        [HttpPost, ActionName("MarkAsPaid")]
+        public ActionResult MarkAsPaidConfirmed(int id = 0)
+        {
+            if (ModelState.IsValid)
+            {
+                var partialBooking = bookingDb.PartialBookings.Find(id);
+
+
+                if (partialBooking != null && partialBooking.Sender == User.Identity.Name && partialBooking.DatePaidUtc == null)
+                {
+                    partialBooking.DatePaidUtc = DateTime.UtcNow;
+                    bookingDb.SaveChanges();
+                    return RedirectToAction("MyAccount");
+                }
+            }
+            return new HttpUnauthorizedResult();
+        }
+
+
+        //
         // GET: /Booking/MultipleAsPaid
         public ActionResult MultipleAsPaid(string userName)
         {
@@ -321,7 +321,6 @@ namespace BookingTool.Controllers
                 }
                 bookingDb.SaveChanges();
                 return RedirectToAction("FilterPerson", new {person = userName});
-
             }
             return new HttpUnauthorizedResult();
         }
