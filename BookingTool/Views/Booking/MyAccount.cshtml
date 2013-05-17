@@ -34,13 +34,25 @@
             </tr>
             <tr>
                 <td class="positive-amount">
-                    @Html.DisplayFor(model => model.Credit) <span>&euro;</span>
+                    @Html.DisplayFor(model => model.Credit) &euro;
                 </td>
                 <td class="negative-amount">
-                    @Html.DisplayFor(model => model.Debit) <span>&euro;</span>
+                    @Html.DisplayFor(model => model.Debit) &euro;
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.TotalAmount) <span>&euro;</span>
+                    @* @Html.DisplayFor(model => model.TotalAmount) &euro;*@
+                    
+                    @{
+                        var totalAmount = Model.TotalAmount;
+                    }
+                    @if (totalAmount < 0)
+                    {
+                        <span class="negative-amount">@totalAmount &euro;</span>        
+                    }
+                    else
+                    {
+                        <span class="positive-amount">@totalAmount &euro;</span>
+                    }
                 </td>
             </tr>
         </table>
