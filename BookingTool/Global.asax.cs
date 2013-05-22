@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using BookingTool.Migrations;
 using BookingTool.Models;
 using WebMatrix.WebData;
 
@@ -29,6 +30,7 @@ namespace BookingTool
 
           //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BookingEntities>());
           //Database.SetInitializer(new CreateDatabaseIfNotExists<BookingEntities>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<BookingEntities, Configuration>());
         }
     }
 }
