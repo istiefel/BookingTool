@@ -17,9 +17,6 @@
             @Html.DisplayNameFor(model => model.Booking.DateBooked)
         </th>
         <th>
-            Beteiligte Person
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
     </tr>
@@ -34,9 +31,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Booking.DateBooked)
-            </td>
-            <td>
-                @Html.ActionLink(item.PersonOpposite(User.Identity.Name), "FilterPerson", "Booking", new {person = item.PersonOpposite(User.Identity.Name)}, null)
             </td>
             <td class="partial-booking-numbers">
                 @{

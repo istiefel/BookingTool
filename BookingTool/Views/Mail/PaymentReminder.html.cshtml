@@ -1,48 +1,47 @@
 ﻿@model BookingTool.Models.AccountOverview
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_EmailLayout.cshtml";
 }
+<body>
+    <div>
+        Hallo @Html.DisplayFor(model => model.FilterPerson), <br/><br/>
+        Offener Betrag: @Html.DisplayFor(model => model.TotalAmount) &euro; <br/>
+        Bitte in den nächsten Tagen umgehend begleichen. <br/><br/>
+        Liebe Grüße <br/>
+        @Html.DisplayFor(model => model.UserName)
+    </div> 
 
-<!DOCTYPE html>
+    <br/>
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>PaymentReminder</title>
-    </head>
-    <body>
-        <div>
-            Hallo @Html.DisplayFor(model => model.UserName)
-        </div>
-        <div>
-            @Html.Partial("PartialBookingsPaymentReminder", Model.PartialBookings)
-        </div>
-    
-        <div class="overview">
-            <table class="partial-bookings">
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Credit)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Debit)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.TotalAmount) 
-                    </th>
-                </tr>
-                <tr>
-                <td class="credit">
-                    @Html.DisplayFor(model => model.Credit) &euro;
-                </td>
-                <td class="debit">
-                    @Html.DisplayFor(model => model.Debit) &euro;
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.TotalAmount) &euro;
-                </td>
-            </table>
-        </div>
-    </body>
-</html> 
+    <div>
+        @Html.Partial("PartialBookingsPaymentReminder", Model.PartialBookings)
+    </div>
+
+    <div class="overview">
+        <table class="partial-bookings">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Credit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Debit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalAmount) 
+                </th>
+            </tr>
+            <tr>
+            <td class="credit">
+                @Html.DisplayFor(model => model.Credit) &euro;
+            </td>
+            <td class="debit">
+                @Html.DisplayFor(model => model.Debit) &euro;
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.TotalAmount) &euro;
+            </td>
+        </table>
+    </div>
+</body>
+

@@ -60,7 +60,8 @@ namespace BookingTool.Controllers
         //
         // GET: /Account/Register
 
-        [AllowAnonymous]
+        //[AllowAnonymous]
+        [Authorize(Users = "info@crossvertise.com")]
         public ActionResult Register()
         {
             return View();
@@ -70,8 +71,9 @@ namespace BookingTool.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "info@crossvertise.com")]
         public ActionResult Register(RegisterModel model)
         {
             if (ModelState.IsValid)
