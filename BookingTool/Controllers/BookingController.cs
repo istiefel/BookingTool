@@ -208,7 +208,7 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/Delete
-        [Authorize(Users = "info@crossvertise.com")]
+        //[Authorize(Users = "info@crossvertise.com")]
         public ActionResult Delete(int id = 0)
         {
             var booking = bookingDb.PartialBookings.Find(id);
@@ -222,7 +222,7 @@ namespace BookingTool.Controllers
         //
         // POST: /Booking/Delete
         [HttpPost, ActionName("Delete")]
-        [Authorize(Users = "info@crossvertise.com")]
+        //[Authorize(Users = "info@crossvertise.com")]
         public ActionResult DeleteConfirmed(int id = 0)
         {
             if (ModelState.IsValid)

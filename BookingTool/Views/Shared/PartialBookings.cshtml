@@ -65,7 +65,7 @@
                 } 
             </td>
             <td>
-                @if (item.Sender == User.Identity.Name && item.Sender == "info@crossvertise.com")
+                @if (item.Sender == User.Identity.Name || item.Sender == "info@crossvertise.com")
                 {
                     @Html.ActionLink("Löschen", "Delete", "Booking", new { id=item.Id }, null)
                 }

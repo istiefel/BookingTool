@@ -27,8 +27,8 @@ namespace BookingTool
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BookingEntities>());
-          //  Database.SetInitializer(new CreateDatabaseIfNotExists<BookingEntities>());
+          //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<BookingEntities>());
+          //Database.SetInitializer(new CreateDatabaseIfNotExists<BookingEntities>());
         }
     }
 }

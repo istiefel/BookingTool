@@ -179,6 +179,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HandelErrorAttribute.cs" />
+    <Compile Include="Migrations\201305131402029_InitialCreate.cs" />
+    <Compile Include="Migrations\201305131402029_InitialCreate.Designer.cs">
+      <DependentUpon>201305131402029_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\AccountOverview.cs" />
     <Compile Include="Models\Booking.cs" />
@@ -343,6 +348,11 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201305131402029_InitialCreate.resx">
+      <DependentUpon>201305131402029_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
