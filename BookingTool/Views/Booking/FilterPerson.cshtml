@@ -55,3 +55,6 @@
 <p>
     @Html.ActionLink("Zurück zum Kontostand", "MyAccount")
 </p>
+<p>
+    @Html.ActionLink("per Mail senden", "SendEmail", new { to = Model.FilterPerson })
+</p>

@@ -2,7 +2,7 @@
 @model IEnumerable<BookingTool.Models.PartialBooking>
 
 @{
-    ViewBag.Title = "PartialBookings";
+    ViewBag.Title = "PartialBookingPaymentReminder";
 }
 
 <table class="partial-bookings">
@@ -36,7 +36,7 @@
                 @Html.DisplayFor(modelItem => item.Booking.DateBooked)
             </td>
             <td>
-                @Html.ActionLink(item.PersonOpposite(User.Identity.Name), "FilterPerson", new {person = item.PersonOpposite(User.Identity.Name)})
+                @Html.ActionLink(item.PersonOpposite(User.Identity.Name), "FilterPerson", "Booking", new {person = item.PersonOpposite(User.Identity.Name)}, null)
             </td>
             <td class="partial-booking-numbers">
                 @{
@@ -49,25 +49,6 @@
                 else
                 {
                     <span class="positive-amount">@amount &euro;</span>
-                }
-            </td>
-            <td>
-                @if (item.Sender == User.Identity.Name) 
-                {
-                    if(item.DatePaidUtc != null)
-                    {
-                        <span class ="partial-booking-paid">Bezahlt</span>
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Bezahlt", "MarkAsPaid", new { id=item.Id })
-                    }
-                } 
-            </td>
-            <td>
-                @if (item.Sender == User.Identity.Name)
-                {
-                    @Html.ActionLink("Löschen", "Delete", new { id=item.Id })
                 }
             </td>
         </tr>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -207,6 +208,7 @@ namespace BookingTool.Controllers
 
         //
         // GET: /Booking/Delete
+        [Authorize(Users = "info@crossvertise.com")]
         public ActionResult Delete(int id = 0)
         {
             var booking = bookingDb.PartialBookings.Find(id);
@@ -220,6 +222,7 @@ namespace BookingTool.Controllers
         //
         // POST: /Booking/Delete
         [HttpPost, ActionName("Delete")]
+        [Authorize(Users = "info@crossvertise.com")]
         public ActionResult DeleteConfirmed(int id = 0)
         {
             if (ModelState.IsValid)
@@ -323,6 +326,25 @@ namespace BookingTool.Controllers
                 return RedirectToAction("FilterPerson", new {person = userName});
             }
             return new HttpUnauthorizedResult();
+        }
+
+
+        //
+        // GET: /Booking/SendEmail
+        public ActionResult SendEmail(string to)
+        {
+            var accountOverview = new AccountOverview();
+            accountOverview.UserName = User.Identity.Name;
+            accountOverview.FilterPerson = to;
+
+            accountOverview.PartialBookings = (from p in bookingDb.PartialBookings
+                                               where(p.Sender == to || p.Sender == accountOverview.UserName) &&
+                                                    (p.Recipient == to || p.Recipient == accountOverview.UserName)
+                                               select p).ToList();
+
+            new MailController().PaymentReminder(accountOverview).Deliver();
+
+            return RedirectToAction("FilterPerson", new {person = to});
         }
     }
 }

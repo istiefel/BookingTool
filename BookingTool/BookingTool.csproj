@@ -41,6 +41,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActionMailer.Net">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -166,6 +172,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -311,7 +318,7 @@
     <Content Include="Views\Shared\EditorTemplates\PartialBooking.cshtml" />
     <Content Include="Views\Booking\EnterParticipantsCount.cshtml" />
     <Content Include="Views\Booking\MyAccount.cshtml" />
-    <Content Include="Views\Booking\PartialBookings.cshtml" />
+    <Content Include="Views\Shared\PartialBookings.cshtml" />
     <Content Include="Views\Booking\Delete.cshtml" />
     <Content Include="Views\Booking\CreateByShares.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SharePartialBooking.cshtml" />
@@ -324,6 +331,9 @@
     <Content Include="Views\Booking\MarkAsPaid.cshtml" />
     <Content Include="Views\Booking\FilterPerson.cshtml" />
     <Content Include="Views\Booking\MultipleAsPaid.cshtml" />
+    <Content Include="Views\Mail\PaymentReminder.html.cshtml" />
+    <Content Include="Views\Mail\PartialBookingsPaymentReminder.cshtml" />
+    <Content Include="Views\Shared\_EmailLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
