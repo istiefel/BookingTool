@@ -52,16 +52,14 @@
                 }
             </td>
             <td>
-                @if (item.Sender == User.Identity.Name) 
+                @if(item.DatePaidUtc != null)
                 {
-                    if(item.DatePaidUtc != null)
-                    {
-                        <span class ="partial-booking-paid">Bezahlt</span>
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Bezahlt", "MarkAsPaid", "Booking", new { id=item.Id }, null)
-                    }
+                    <span class ="partial-booking-paid">Bezahlt</span>
+                }
+
+                else if (item.Sender == User.Identity.Name) 
+                {
+                    @Html.ActionLink("Bezahlt", "MarkAsPaid", "Booking", new { id=item.Id }, null)
                 } 
             </td>
             <td>

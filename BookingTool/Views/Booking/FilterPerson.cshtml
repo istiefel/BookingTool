@@ -33,16 +33,21 @@
                 </th>
             </tr>
             <tr>
-                <td class="credit">
+                <td class="positive-amount">
                     @Html.DisplayFor(model => model.Credit) &euro;
                 </td>
-                <td class="debit">
+                <td class="negative-amount">
                     @Html.DisplayFor(model => model.Debit) &euro;
                 </td>
                 <td>
                     @Html.DisplayFor(model => model.TotalAmount) &euro;
                 </td>
                 <td>
+                    @if(Model.PartialBookings.All(d => d.DatePaidUtc != null))
+                    {
+                        <span class ="partial-booking-paid">Bezahlt</span>
+                    }
+
                     @if (Model.TotalAmount > 0)
                     {                    
                         @Html.ActionLink("Alles Bezahlt", "MultipleAsPaid", new { userName=Model.FilterPerson })

@@ -42,7 +42,7 @@ namespace BookingTool.Models
                 }
                 else
                 {
-                    return (-1)*PartialBookings.Where(p => p.Recipient == UserName).Sum(p => p.Amount);
+                    return (-1)*PartialBookings.Where(p => p.Recipient == UserName && p.DatePaidUtc == null).Sum(p => p.Amount);
                 }
             }
         }

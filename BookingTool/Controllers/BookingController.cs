@@ -91,12 +91,26 @@ namespace BookingTool.Controllers
             booking.DateCreatedUtc = DateTime.UtcNow;
             //booking.DateBookedUtc = TimeZoneInfo.ConvertTimeToUtc(booking.DateBooked, MvcApplication.ApplicationTimeZoneInfo);
 
+            if (booking.PartialBookings.Any(a => a.Amount < 0))
+            {
+                ModelState.AddModelError("Amount", "Amount is negative");
+            }
+
             if (ModelState.IsValid)
             {
                 bookingDb.Bookings.Add(booking);
                 bookingDb.SaveChanges();
                 return RedirectToAction("MyAccount");                
             }
+
+            ViewBag.ParticipantsCount = booking.PartialBookings.Count();
+
+            var userContext = new UsersContext();
+            var userNames = from u in userContext.UserProfiles
+                            where u.UserName != User.Identity.Name
+                            select u.UserName;
+            ViewBag.UserNames = userNames.ToList();
+
             return View(booking);
         }
 
@@ -131,12 +145,26 @@ namespace BookingTool.Controllers
         {
             shareBooking.DateCreatedUtc = DateTime.UtcNow;
 
+            if (shareBooking.TotalAmount < 0)
+            {
+                ModelState.AddModelError("TotalAmount", "Summe is negative");
+            }
+
             if (ModelState.IsValid)
             {
                 bookingDb.Bookings.Add(shareBooking.ConvertToBooking());
                 bookingDb.SaveChanges();
                 return RedirectToAction("MyAccount");
             }
+
+            ViewBag.ParticipantsCount = shareBooking.SharePartialBookings.Count();
+
+            var userContext = new UsersContext();
+            var userName = from u in userContext.UserProfiles
+                           where u.UserName != User.Identity.Name
+                           select u.UserName;
+            ViewBag.UserNames = userName.ToList();
+
             return View(shareBooking);
         }
 
