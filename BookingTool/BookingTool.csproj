@@ -259,8 +259,8 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\xv-booking-tool - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\xv-booking-tool - FTP %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\xv-booking-tool - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\xv-booking-tool - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\xv-booking-tool - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\Globalize\globalize.culture.de-DE.js" />

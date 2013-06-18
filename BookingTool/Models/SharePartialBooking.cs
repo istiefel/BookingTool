@@ -57,7 +57,7 @@ namespace BookingTool.Models
 
         public PartialBooking ConvertToPartialBooking()
         {
-            return new PartialBooking {Amount = Amount, BookingId = ShareBookingId, Id = Id, Recipient = Recipient, Sender = Sender};
+            return new PartialBooking {Amount = Amount, BookingId = ShareBookingId, Id = Id, Recipient = Recipient, Sender = Sender, DatePaidUtc = Recipient == Sender ? DateTime.UtcNow : (DateTime?) null};
         }
     }
 }

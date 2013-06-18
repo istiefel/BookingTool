@@ -93,7 +93,7 @@ namespace BookingTool.Controllers
 
             if (booking.PartialBookings.Any(a => a.Amount < 0))
             {
-                ModelState.AddModelError("Amount", "Amount is negative");
+                ModelState.AddModelError("Amount", "Betrag is negative");
             }
 
             if (ModelState.IsValid)
@@ -123,7 +123,6 @@ namespace BookingTool.Controllers
 
             var userContext = new UsersContext();
             var userName = from u in userContext.UserProfiles
-                           where u.UserName != User.Identity.Name
                            select u.UserName;
             ViewBag.UserNames = userName.ToList();
 
@@ -161,7 +160,6 @@ namespace BookingTool.Controllers
 
             var userContext = new UsersContext();
             var userName = from u in userContext.UserProfiles
-                           where u.UserName != User.Identity.Name
                            select u.UserName;
             ViewBag.UserNames = userName.ToList();
 

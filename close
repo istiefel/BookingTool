@@ -1,0 +1,206 @@
+[33mcommit d2363e44db9929c6b28dd923a6fce2e43d06376f[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu May 23 16:58:43 2013 +0200
+
+    only positiv amounts
+
+[33mcommit 7365684796c843942641a1913721bad22115980a[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed May 22 18:06:01 2013 +0200
+
+    Removed MDF file from source control, added MigrateDatabaseToLatestVersion initializer
+
+[33mcommit 78c52f767e650c94a7d38b8e4e583574f47aad9f[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed May 22 17:16:06 2013 +0200
+
+    Enable Code First Migration for BookingEntities
+
+[33mcommit d2634a2aa9c18f0d7a8f956def57736aecbf5ad2[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed May 22 14:09:01 2013 +0200
+
+    Register
+
+[33mcommit 6ab202f9e9ea8a171d784ba6a686ad7fc23ed746[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed May 22 11:55:31 2013 +0200
+
+    MailController
+
+[33mcommit 5c3e1d631e4d5f1d14f0f99e169ffb057d92b631[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 17 12:22:53 2013 +0200
+
+    total
+
+[33mcommit 1dc09ddf39cc329c9b63323e1d9f288b1dbaf95f[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 17 12:16:08 2013 +0200
+
+    views > inhalte
+
+[33mcommit cea453e9864dcbfb7d498a8627701c04d7a11ba7[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 17 09:25:16 2013 +0200
+
+    multiple as paid
+
+[33mcommit b955ca0d3d1a9cd3e0df4f5ac428a1c5c765524f[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Tue May 14 09:41:39 2013 +0200
+
+    UnitBooking Amount
+
+[33mcommit 9eaaeb98f1dcfbe0b795933b3ba64e242f83550b[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Mon May 13 15:30:33 2013 +0200
+
+    FilterPerson action
+
+[33mcommit d0d4182b86481178a773fafc2a92de0959fc40cf[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Mon May 13 11:12:43 2013 +0200
+
+    MarkAsPaid action
+
+[33mcommit 5ee4836175b65760cece26d75146d970126e027d[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 10 16:25:22 2013 +0200
+
+    markAsPaid
+
+[33mcommit 61e76064e7ec00e535d0e7c51378ad3e1d8e1d3c[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 10 13:57:26 2013 +0200
+
+    neues Produkt erstellen
+
+[33mcommit d1f4ed5a232c3a1e4c33c3b92d7b49fc9460b3a7[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed May 8 17:14:17 2013 +0200
+
+    createByUnit 2
+
+[33mcommit 375280bce6fa814313d0990c66905f13a34e518f[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed May 8 13:40:53 2013 +0200
+
+    createByUnit
+
+[33mcommit 953cf568010ebc0ef24f528633850a6e77f8d1d5[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Tue May 7 15:51:56 2013 +0200
+
+    views german
+
+[33mcommit 774db798b5ca95222cc0ee59874cf37fc91987bd[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Tue May 7 14:43:23 2013 +0200
+
+    createByShares
+
+[33mcommit c4cb4446993aec1d49d56e088bafe028cb76ac87[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Mon May 6 12:43:45 2013 +0200
+
+    ActionMethod Delete
+
+[33mcommit 8806c9626a9eb7f887cc8d07a659ce060e546751[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 3 16:42:09 2013 +0200
+
+    DateTime UTC
+
+[33mcommit 44fe12ae0e5c49907af148bf8d852d8d9b8d941b[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri May 3 09:51:43 2013 +0200
+
+    PersonOpposite UserName
+
+[33mcommit 174523bf90df04fe9134147cd0c2698b70d1e51f[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu May 2 16:41:16 2013 +0200
+
+    OrderBy DateBooked
+
+[33mcommit d09486484fb4f889fe6c73146b143e176cce2ba0[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu May 2 15:02:42 2013 +0200
+
+    TotalAmount - MyAccount
+
+[33mcommit a349ce0abed1b26577c5c395635e5f511a66cf69[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu May 2 13:01:55 2013 +0200
+
+    AccountOverview
+
+[33mcommit 0ae3123135e4335161e2756e6ea689406024fb42[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu May 2 10:36:41 2013 +0200
+
+    MyAccount view css
+
+[33mcommit 7e6e538cd0d2c83edc315f97ffb9223af744ba57[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Tue Apr 30 13:42:55 2013 +0200
+
+    MyAccount view
+
+[33mcommit 9b66ca9252654a05e1ec4bd0e607d242c20854ad[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Tue Apr 30 11:45:06 2013 +0200
+
+    GetAllUsers method
+
+[33mcommit 6652c0a67426b2111c8c78d587dffb1ccba05e2a[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Fri Apr 26 13:15:37 2013 +0200
+
+    accountOverview
+
+[33mcommit b39b7a7ac84b3e13bbdc5c8d33040a796c6a51ba[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu Apr 25 16:58:04 2013 +0200
+
+    validation
+
+[33mcommit 1c37f7aeededc044af3ebaef0f1c626a33f90597[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu Apr 25 13:38:27 2013 +0200
+
+    site.css
+
+[33mcommit 1399e9bcd1af290a167f4cff11d8ba8b155c9ddf[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Thu Apr 25 10:45:21 2013 +0200
+
+    Enabled Nuget package restore
+
+[33mcommit 61f1a2e5a2afffc6823b323dfae42983a19b2ac5[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed Apr 24 17:25:37 2013 +0200
+
+    booking form 2
+
+[33mcommit e034dc6c65b927729d8e017ab8ebeaaff64dd090[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed Apr 24 15:43:52 2013 +0200
+
+    booking form
+
+[33mcommit 9f042d778357c250dbaff726851edb33f8c4ad9a[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Wed Apr 24 10:32:37 2013 +0200
+
+    controller
+
+[33mcommit 75ef2b64a16c94498c4f2e5dcad0599e634a0fc5[m
+Author: Isabella Stiefel <i.stiefel@crossvertise.com>
+Date:   Tue Apr 23 09:26:02 2013 +0200
+
+    model
+    
+    Booking.cs
+    PartialBooking.cs
